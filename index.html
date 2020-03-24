@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- temp -->
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, max-age=0, must-revalidate"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<!-- temp -->
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous" />
+		<link rel="stylesheet" href="css/style.css" crossorigin="anonymous" />
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<title>FuzzyLogic</title>
+	</head>
+	<body>
+		<div id="root" class="container-fluid">
+			<div id="" class="container">
+				<div id="header" class="jumbotron jumbotron-fluid">
+					<nav class="navbar navbar-expand-lg navbar-light bg-light">
+						<h4>Hebbian Learning Algorithm — </h4>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarNav">
+							<div id="" class="btn-group" role="group"  aria-label="Button group">
+								<a id="btn_Linear" class="btn btn-secondary" href="#" role="button">Linear</a>
+								<a id="btn_Nonlinear" class="btn" href="#" role="button">Non linear</a>
+								<a id="btn_ImprovedAlgorithm" class="btn" href="#" role="button">Improved algorithm</a>
+							</div>
+						</div>
+					</nav>
+					<header>
+						<h1 class="display-5">Fuzzy logic</h1>
+						<p class="lead">This project demonstrates fuzzy logic in the context of a simulation of a washing machine</p>
+					</header>
+				</div>
+				<div id="content" class="row">
+					<div id="" class="col">
+						<div id="" class="jumbotron jumbotron-fluid">
+							<div id="" class="container-fluid">
+								<form id="m_form" onsubmit="return false;">
+									<div class="form-group">
+										<label for="greasy_OptionSelect">Mud type</label>
+										<select id="greasy_OptionSelect" class="custom-select">
+											<option value="Not Greasy">Not Greasy</option>
+											<option value="Medium">Medium</option>
+											<option value="Greasy">Greasy</option>
+										</select>
+										<small id="weight_OptionHelp" class="form-text text-muted">Please select a mud type</small>
+										<label for="dirt_QualitySelect">Dirt quality</label>
+										<select id="dirt_QualitySelect" class="custom-select">
+											<option value="Small">Small</option>
+											<option value="Medium">Medium</option>
+											<option value="Large">Large</option>
+										</select>
+										<small id="dirt_QualityHelp" class="form-text text-muted">Please select a dirt quality</small>
+										<label for="wash_Weight">Washing weight</label>
+										<input id="wash_Weight" type="range" class="custom-range" min="0" max="5" step="1" value="1">
+										<small id="wash_WeightHelp" class="form-text text-muted">Please select a washing weight (1 - 5 kg.)</small>
+									</div>
+									<div class="form-group">
+										<!--  -->
+									</div>
+									<div class="form-group">
+										<!--  -->
+									</div>
+									<input type="button" class="btn btn-primary" id="reset" value="Reset">
+									<input type="button" class="btn btn-success" id="compute" value="Compute">
+								</form>
+							</div>
+						</div>
+					</div>
+					<div id="" class="col">
+						<h2>Selected Options</h2>
+						<p>Mud type: <span class="" id="greasy_option">Not Greasy</span></p>
+						<p>Dirt quality: <span class="" id="quality_option">Small</span></p>
+						<p>Washing weight: <span class="" id="weight_option">1</span> kg</p>
+						<hr>
+						<h2>Calculation result</h2>
+						<h5>Washing time: <span id="time_result" class="badge badge-secondary">Very Short</span></h5>
+						<h5 id="">Amount of water: <span id="water_result" class="badge badge-secondary">2.9 liters</span></h5>
+					</div>
+				</div>
+			</div>
+			<!-- <div id="" class="container">
+				<div id="" class="jumbotron jumbotron-fluid">
+					<div id="" class="row">
+						<div id="drawing" class="col">
+							
+						</div>
+					</div>
+				</div>
+			</div> -->
+		</div>
+		<script src="js/jquery-3.4.1.slim.min.js" crossorigin="anonymous"></script>
+		<script src="js/popper.min.js" crossorigin="anonymous"></script>
+		<script src="js/bootstrap.min.js" crossorigin="anonymous"></script>
+		<!-- <script src="js/svg.js" crossorigin="anonymous"></script> -->
+		<script src="js/main.js" crossorigin="anonymous"></script>
+		<!-- <script src="js/expert.js" crossorigin="anonymous"></script> -->
+		<!-- <script src="js/common.js" crossorigin="anonymous"></script> -->
+		<script src="js/linearHebbEducation.js" crossorigin="anonymous"></script>
+		<script src="js/improvedAlgorithm.js" crossorigin="anonymous"></script>
+		<script src="js/noLinearHebb.js" crossorigin="anonymous"></script>
+	</body>
+</html>
