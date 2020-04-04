@@ -1,7 +1,7 @@
 # FuzzyLogic
 >Predmetom fuzzy logiky je možnosť uvažovania v podmienkach nejasnosti, neostrosti a ich aplikácie v počítačových systémoch.
 
-[Demo :arrow_forward:](https://moroz69off.github.io/FuzzyLogic/)
+[Demo :arrow_forward:](https://adamtheiner.github.io/fuzzy/)
 
 ## Praktický príklad systému založeného na fuzzy logike
 Vytvoríme jednoduchý fuzzy riadiaci systém na riadenie prevádzky práčky, aby fuzzy systém riadil pranie, príjem vody, čas prania a rýchlosť odstreďovania.
