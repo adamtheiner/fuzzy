@@ -1,7 +1,12 @@
 'use strict';
-ComputeSizes();
+var sizes = ComputeSizes();
 
 function ComputeSizes () {
 	let windowWidth = document.body.clientWidth;
-	console.log(windowWidth);
+	let windowHeight = document.body.clientHeight;
+	let s = {Width:windowWidth, Height:windowHeight};
+	
+	return s;
 }
+
+console.log(sizes.Width);
