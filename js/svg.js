@@ -93,11 +93,21 @@ function DrawLines() {
 	DrawLine(i+(i/10), i/10, i, 30, 15, '#7cf')
 }
 
+function DrawRoundedRect (x, y, w, h, r, sw, cs, cf) {
+	var roundRect = document.createElementNS(ns,'rect');
+	roundRect.setAttribute('x', x);
+	roundRect.setAttribute('y', y);
+	roundRect.setAttribute('width', w);
+	roundRect.setAttribute('height', h);
+	roundRect.setAttribute('rx', r);
+	roundRect.setAttribute('ry', r);
+	roundRect.setAttribute('fill', cf);
+	roundRect.setAttribute('stroke', cs);
+	roundRect.setAttribute('stroke-width', sw);
+	svg.appendChild(roundRect);
+}
+
 //SetNodesCoordinates(9, 22);
 
 //DrawNodes();
 
-//================================================
-
-DrawLines();
-DrawLine(0, 0, 50, 50, 4, 'red');
