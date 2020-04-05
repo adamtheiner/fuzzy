@@ -1,3 +1,6 @@
+body{
+	height: 100vh;
+}
 .jumbotron{
 	padding-top: 2rem;
 	padding-right: 1rem;
@@ -33,4 +36,12 @@ button:focus,
 	border-width:1px !important;
 	border-color: rgb(108, 117, 125) !important;
 	border-style: solid !important;
+}
+
+#drawing{
+	
+}
+
+#content{
+	height: 100%;
 }
