@@ -1,27 +1,55 @@
+'use strict';
 var ns = 'http://www.w3.org/2000/svg';
-//var div = document.getElementById('drawing');
+var div = document.getElementById('drawing');
 var svg = document.createElementNS(ns, 'svg');
 svg.setAttributeNS(null, 'width', '100%');
-svg.setAttributeNS(null, 'height', '256');
-//div.appendChild(svg);
+//svg.setAttributeNS(null, 'height', '100%');
+div.appendChild(svg);
 
-var Lines = ['blabla'];
+var Lines = [' ',' ',' ',' ',' '];
 var NodesTop = [];
 var NodesBottom = [];
-
 var radius = svg.clientWidth / 64;
 var intervalOfNodes;
 
-function DrawNode (x, y) {
+///
+/* рисует КРУГ с параметрами:
+x - координата, У - координата,
+r - радиус, с - цвет
+(строка типа '#777' или '#7f7f7c')*/
+///
+function DrawCircle (x, y, r, c) {
 	let circle = document.createElementNS(ns, 'circle');
 	circle.setAttributeNS(null, 'cx', x);
 	circle.setAttributeNS(null, 'cy', y);
-	circle.setAttributeNS(null, 'r', radius);
-	circle.setAttributeNS(null, 'fill', '#777');
+	circle.setAttributeNS(null, 'r', r);
+	circle.setAttributeNS(null, 'fill', с);
 	svg.appendChild(circle);
 }
 
-function SetNodesCoordinates (topNodesNumber, bottomNodesNumber) { // params: how many Nodes in the top row, how many Nodes in the bottom row
+///
+/* рисует ПРЯМУЮ ЛИНИЮ с параметрами: 
+x1 - координата начала, У1 - координата начала,
+x2 - координата конца, У2 - координата конца,
+th - толщина, с - цвет (строка типа '#777' или '#7f7f7c')*/
+///
+function DrawLine (x1, y1, x2, y2, sw, c) {
+	var line = document.createElementNS(ns,'line');
+	line.setAttribute('x1', x1);
+	line.setAttribute('y1', y1);
+	line.setAttribute('x2', x2);
+	line.setAttribute('y2', y2);
+	line.setAttribute("stroke", c)
+	line.setAttribute('stroke-width', sw);
+	svg.appendChild(line);
+}
+
+///
+/* params:
+how many Nodes in the top row,
+how many Nodes in the bottom row*/
+///
+function SetNodesCoordinates (topNodesNumber, bottomNodesNumber) { 
 	var svgFrameWidth = svg.clientWidth;
 	var svgFrameHeigth = svg.clientHeight;
 	intervalOfNodes = svgFrameWidth/40 + radius; // distance between Nodes
@@ -52,24 +80,24 @@ function DrawNodes () {
 	OffsetRowNodesToCenter();
 
 	for (let i=0; i<NodesTop.length; i++) {
-		DrawNode(NodesTop[i].x, NodesTop[i].y);
+		DrawCircle(NodesTop[i].x, NodesTop[i].y);
 	}
 
 	for (let i=0; i<NodesBottom.length; i++) {
-		DrawNode(NodesBottom[i].x, NodesBottom[i].y);
+		DrawCircle(NodesBottom[i].x, NodesBottom[i].y, radius, '#777');
 	}
 }
 
 function DrawLines() {
-	for (let i = 0; i < Lines.length; i++) {
-		DrawLine();
-	}
+	let i=0;
+	DrawLine(i+(i/10), i/10, i, 30, 15, '#7cf')
 }
 
-function DrawLine() {
-	
-}
+//SetNodesCoordinates(9, 22);
 
-SetNodesCoordinates(9, 22);
+//DrawNodes();
 
-DrawNodes();
+//================================================
+
+DrawLines();
+DrawLine(0, 0, 50, 50, 4, 'red');
