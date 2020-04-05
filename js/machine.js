@@ -37,4 +37,9 @@ function DrawMachine () {
 	posX = (svgFrame.clientWidth - machineWidth) / 2;
 	posY = (svgFrame.clientHeight - machineHeight) / 2;
 	DrawRoundedRect (posX, posY, machineWidth, machineHeight, 4, 2, '#8696a0', '#fff');
+	let washingDrumX = sizes.grW / 2;
+	let washingDrumY = svgFrame.clientHeight / 2;
+	let drumRadius = (machineWidth / 2 + machineWidth / 7) / 2;
+	DrawLine (posX, posY + machineHeight / 6, posX + machineWidth, posY + machineHeight / 6, 2, '#8696a0');
+	DrawCircle (washingDrumX, washingDrumY, drumRadius, '#8696a0', 2, '#fff')
 }
