@@ -6,7 +6,6 @@ svg.setAttributeNS(null, 'width', '100%');
 //svg.setAttributeNS(null, 'height', '100%');
 div.appendChild(svg);
 
-var Lines = [' ',' ',' ',' ',' '];
 var NodesTop = [];
 var NodesBottom = [];
 var radius = svg.clientWidth / 64;
@@ -89,8 +88,7 @@ function DrawNodes () {
 }
 
 function DrawLines() {
-	let i=0;
-	DrawLine(i+(i/10), i/10, i, 30, 15, '#7cf')
+	
 }
 
 function DrawRoundedRect (x, y, w, h, r, sw, cs, cf) {
