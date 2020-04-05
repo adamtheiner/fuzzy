@@ -1,6 +1,6 @@
 'use strict';
 var sizes = ComputeSizes();
-var machineGR = document.getElementById('mmachineGR');
+var machineGR = document.getElementById('machineGR');
 var drawingSVG = document.getElementById('drawing');
 var svgFrame = document.getElementsByTagName('svg')[0];
 
