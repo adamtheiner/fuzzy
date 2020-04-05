@@ -1,5 +1,5 @@
 'use strict';
-var machineGR = document.getElementById('mmachineGR');
+var machineGR = document.getElementById('machineGR');
 var drawingSVG = document.getElementById('drawing');
 var svgFrame = document.getElementsByTagName('svg')[0];
 var sizes = ComputeSizes();
@@ -8,22 +8,33 @@ function ComputeSizes () { //вычисление размеров видимо�
 	let windowWidth = document.body.clientWidth;
 	let windowHeight = document.body.clientHeight;
 	let headerHeight = document.getElementById('header').clientHeight;
-	let grHeight = windowHeight - headerHeight - 3;
-	let machineWidth = svgFrame.clientWidth / 2 + svgFrame.clientWidth / 4;
-	let s = {Width:windowWidth, Height:windowHeight, HeaderHeight:headerHeight, GraphicHeight:grHeight};
-	
+	let grHeight = (windowHeight - headerHeight) - 3;
+	let grWidth = svgFrame.clientWidth;
+	let s = {grH:grHeight, grW:grWidth};
 	return s;
 }
 
-machineGR.setAttribute('height', sizes.GraphicHeight);
-svgFrame.setAttribute('height', sizes.GraphicHeight - sizes.GraphicHeight/4);
-
-console.log(sizes);
+machineGR.setAttribute('height', sizes.grH);
+svgFrame.setAttribute('height', sizes.grH - sizes.grH / 4);
 
 DrawMachine();
 
 //================================
 
 function DrawMachine () {
-	DrawRoundedRect (10, 10, 290, 380, 4, 2, '#369', '#fff');
+	let machineWidth;
+	let machineHeight;
+	let posX;
+	let posY;
+	if (sizes.grH > sizes.grW) {
+		machineWidth = (sizes.grW - sizes.grW / 4) - 5;
+		machineHeight = (machineWidth + machineWidth / 4) - 5;
+	}
+		else {
+		machineHeight = (sizes.grH - sizes.grH / 4) - 5;
+		machineWidth = (machineHeight - machineHeight / 4) - 5
+		}
+	posX = (svgFrame.clientWidth - machineWidth) / 2;
+	posY = (svgFrame.clientHeight - machineHeight) / 2;
+	DrawRoundedRect (posX, posY, machineWidth, machineHeight, 4, 2, '#8696a0', '#fff');
 }
