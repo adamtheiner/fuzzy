@@ -17,12 +17,14 @@ x - координата, У - координата,
 r - радиус, с - цвет
 (строка типа '#777' или '#7f7f7c')*/
 ///
-function DrawCircle (x, y, r, c) {
+function DrawCircle (x, y, r, s, sw, c) {
 	let circle = document.createElementNS(ns, 'circle');
 	circle.setAttributeNS(null, 'cx', x);
 	circle.setAttributeNS(null, 'cy', y);
 	circle.setAttributeNS(null, 'r', r);
-	circle.setAttributeNS(null, 'fill', с);
+	circle.setAttributeNS(null, 'fill', c);
+	circle.setAttributeNS(null, 'stroke', s);
+	circle.setAttributeNS(null, 'stroke-width', sw);
 	svg.appendChild(circle);
 }
 
