@@ -107,6 +107,15 @@ function DrawRoundedRect (x, y, w, h, r, sw, cs, cf) {
 	svg.appendChild(roundRect);
 }
 
+function DrawSock (posX, posY) {
+	var sock = document.createElementNS(ns,'path');
+	sock.setAttribute(null, 'stroke', 'black');
+	sock.setAttribute(null, 'stroke-width', 0.333);
+	sock.setAttribute(null, 'fill', '#e3e3e3')
+	sock.setAttribute(null, 'd', 'M' + (posX) + ' ' + (posY) + ' h 30 v 30 h -30 z'); // sock path
+	svg.appendChild(sock);
+}
+
 //SetNodesCoordinates(9, 22);
 
 //DrawNodes();
