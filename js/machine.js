@@ -18,6 +18,7 @@ machineGR.setAttribute('height', sizes.grH);
 svgFrame.setAttribute('height', sizes.grH - sizes.grH / 4);
 
 DrawMachine();
+DrawSock(10, 10);
 
 //================================
 
