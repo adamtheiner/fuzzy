@@ -112,7 +112,7 @@ function DrawSock (posX, posY) {
 	sock.setAttribute('stroke', 'black');
 	sock.setAttribute('stroke-width', 0.333);
 	sock.setAttribute('fill', '#e3e3e3')
-	sock.setAttribute('d', 'M' + (posX) + ' ' + (posY) + ' h 30 v 30 h -30 z'); // sock path
+	//sock.setAttribute('d', 'M' + (posX) + ' ' + (posY) + ' h 30 v 30 h -30 z'); // sock path
 	svg.appendChild(sock);
 }
 
