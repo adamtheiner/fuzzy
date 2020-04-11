@@ -3,6 +3,13 @@ var ns = 'http://www.w3.org/2000/svg';
 var divSvg = document.getElementById('drawing');
 var svg = document.createElementNS(ns, 'svg');
 svg.setAttributeNS(null, 'width', '100%');
+//var blurFilter = document.createElementNS(ns, 'filter');
+//blurFilter.setAttribute('id', 'blurFilter')
+//svg.appendChild(blurFilter);
+//var gauseBlur = document.createElementNS(ns, 'feGaussianBlur');
+//blurFilter.appendChild(gauseBlur);
+//gauseBlur.setAttribute('stDeviation', 5);
+
 //svg.setAttributeNS(null, 'height', '100%');
 if (divSvg) {
 	divSvg.appendChild(svg);
@@ -13,9 +20,14 @@ var NodesBottom = [];
 var radius = svg.clientWidth / 64;
 var intervalOfNodes;
 var lines = [];
+var tablePosX = 0;
+var tablePosY = 0;
+var tableWidth = 0;
+var tableHeight = 0;
 
 var machineColor = '#8696a0';
-var cipherColor = '#48ac48';
+//var cipherColor = '#48ac48';
+var cipherColor = '#0ff';
 
 ///
 /* рисует КРУГ с параметрами:
@@ -38,7 +50,7 @@ function DrawCircle (x, y, r, s, sw, c) {
 x1 - координата начала, У1 - координата начала,
 x2 - координата конца, У2 - координата конца,
 th - толщина, с - цвет (строка типа '#777' или '#7f7f7c')*/
-function DrawLine (x1, y1, x2, y2, sw, c) {
+function DrawLine (x1, y1, x2, y2, sw, c, b) {
 	var line = document.createElementNS(ns,'line');
 	line.setAttribute('x1', x1);
 	line.setAttribute('y1', y1);
@@ -94,8 +106,7 @@ function DrawNodes () {
 function DrawLines(lines) {
 	lines.forEach (function(line, i, lines)
 	{
-		console.log(i);
-		DrawLine(line.x1, line.y1, line.x2, line.y2, line.sw, line.c);
+		DrawLine(line.x1, line.y1, line.x2, line.y2, line.sw, line.c, line.b);
 	});
 }
 
@@ -134,35 +145,33 @@ function DrawStartButton (isStarted, posX, posY, radius) {
 }
 
 function DrawWashTimeTable (posX, posY, scaledMachineSize, washTimeStr) {
-	let tablePosX = posX + scaledMachineSize / 2;
-	let tablePosY = posY + scaledMachineSize / 21;
-	let tableWidth = scaledMachineSize / 2.5;
-	let tableHeight = scaledMachineSize / 7;
-	let hours = 1;
+	tablePosX = posX + scaledMachineSize / 2;
+	tablePosY = posY + scaledMachineSize / 21;
+	tableWidth = scaledMachineSize / 2 - scaledMachineSize / 21;
+	tableHeight = scaledMachineSize / 7;
+	let hours = 1;   //===============================================hours
 	let minutes = 10;
-	DrawRoundedRect (tablePosX, tablePosY, tableWidth, tableHeight, 4, 2, machineColor, 'rgba(0, 0, 0, 0.5)');
+	DrawRoundedRect (tablePosX, tablePosY, tableWidth, tableHeight, 4, 2, machineColor, 'rgba(0, 0, 0, 0.777)');
 	DrawHours(hours);
 	DrawMinutes(minutes);
 }
 
 function DrawHours (hours) {
+	var hoursText = "00:";
 	switch(hours) {
-		case 0: lines = [
-			{'x1':15, 'y1':15, 'x2':50, 'y2':150, 'sw':2, 'c':cipherColor},
-			{'x1':10, 'y1':40, 'x2':10, 'y2':140, 'sw':2, 'c':cipherColor}
-		];
+		case 0: hoursText = "00:";
 		break;
-		case 1: lines = [
-			{'x1':19, 'y1':19, 'x2':50, 'y2':250, 'sw':2, 'c':cipherColor},
-			{'x1':10, 'y1':40, 'x2':10, 'y2':140, 'sw':2, 'c':cipherColor}
-		];
+		case 1: hoursText = "01:";
 		break;
 	}
-	DrawLines(lines);
-	console.log(lines);
+	DrawCipher(hoursText);
 }
 
 function DrawMinutes(minutes) {
+}
+
+function DrawCipher (cipher) {
+	console.log(cipher);
 }
 
 //SetNodesCoordinates(9, 22);
