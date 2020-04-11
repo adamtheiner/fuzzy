@@ -1,3 +1,4 @@
 fuzzy4.jpg
 fuzzy5.jpg
- 
+fuzzyLogic.png (icon)
+fuzzyLogic.psd (icon)
