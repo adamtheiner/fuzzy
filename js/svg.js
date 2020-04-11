@@ -12,8 +12,10 @@ var NodesTop = [];
 var NodesBottom = [];
 var radius = svg.clientWidth / 64;
 var intervalOfNodes;
+var lines = [];
 
 var machineColor = '#8696a0';
+var cipherColor = '#48ac48';
 
 ///
 /* рисует КРУГ с параметрами:
@@ -90,9 +92,11 @@ function DrawNodes () {
 }
 
 function DrawLines(lines) {
-	for (var i = 0; i < lines.Length; i++) {
-		DrawLine(lines[i].x1, lines[i].y1, lines[i].x2, lines[i].y2, lines[i].sw, lines[i].c);
-	}
+	lines.forEach (function(line, i, lines)
+	{
+		console.log(i);
+		DrawLine(line.x1, line.y1, line.x2, line.y2, line.sw, line.c);
+	});
 }
 
 function DrawRoundedRect (x, y, w, h, r, sw, cs, cf) {
@@ -130,12 +134,11 @@ function DrawStartButton (isStarted, posX, posY, radius) {
 }
 
 function DrawWashTimeTable (posX, posY, scaledMachineSize, washTimeStr) {
-	let cipherColor = '#48ac48';
 	let tablePosX = posX + scaledMachineSize / 2;
 	let tablePosY = posY + scaledMachineSize / 21;
 	let tableWidth = scaledMachineSize / 2.5;
 	let tableHeight = scaledMachineSize / 7;
-	let hours = 0;
+	let hours = 1;
 	let minutes = 10;
 	DrawRoundedRect (tablePosX, tablePosY, tableWidth, tableHeight, 4, 2, machineColor, 'rgba(0, 0, 0, 0.5)');
 	DrawHours(hours);
@@ -143,6 +146,23 @@ function DrawWashTimeTable (posX, posY, scaledMachineSize, washTimeStr) {
 }
 
 function DrawHours (hours) {
+	switch(hours) {
+		case 0: lines = [
+			{'x1':15, 'y1':15, 'x2':50, 'y2':150, 'sw':2, 'c':cipherColor},
+			{'x1':10, 'y1':40, 'x2':10, 'y2':140, 'sw':2, 'c':cipherColor}
+		];
+		break;
+		case 1: lines = [
+			{'x1':19, 'y1':19, 'x2':50, 'y2':250, 'sw':2, 'c':cipherColor},
+			{'x1':10, 'y1':40, 'x2':10, 'y2':140, 'sw':2, 'c':cipherColor}
+		];
+		break;
+	}
+	DrawLines(lines);
+	console.log(lines);
+}
+
+function DrawMinutes(minutes) {
 }
 
 //SetNodesCoordinates(9, 22);
