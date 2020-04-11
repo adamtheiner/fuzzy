@@ -3,12 +3,23 @@ var ns = 'http://www.w3.org/2000/svg';
 var divSvg = document.getElementById('drawing');
 var svg = document.createElementNS(ns, 'svg');
 svg.setAttributeNS(null, 'width', '100%');
-//var blurFilter = document.createElementNS(ns, 'filter');
-//blurFilter.setAttribute('id', 'blurFilter')
-//svg.appendChild(blurFilter);
-//var gauseBlur = document.createElementNS(ns, 'feGaussianBlur');
-//blurFilter.appendChild(gauseBlur);
-//gauseBlur.setAttribute('stDeviation', 5);
+var blurFilter = document.createElementNS(ns, 'filter');
+blurFilter.setAttribute('id', 'blurFilter')
+svg.appendChild(blurFilter);
+var gauseBlur = document.createElementNS(ns, 'feGaussianBlur');
+blurFilter.appendChild(gauseBlur);
+
+var linearGradient = document.createElementNS(ns, 'linearGradient');
+linearGradient.setAttribute('id', 'linear-gradient');
+svg.appendChild(linearGradient);
+linearGradient.innerHTML = `
+	<stop offset="0%" stop-color="#ffffff"/>
+	<stop offset="10%" stop-color="#ade6fe"/>
+	<stop offset="15%" stop-color="#ffffff"/>
+	<stop offset="30%" stop-color="#ade6fe"/>
+	<stop offset="35%" stop-color="#ffffff"/>
+	<stop offset="100%" stop-color="#ade6fe"/>
+`;
 
 //svg.setAttributeNS(null, 'height', '100%');
 if (divSvg) {
@@ -35,7 +46,7 @@ x - координата, У - координата,
 r - радиус, с - цвет
 (строка типа '#777' или '#7f7f7c')*/
 ///
-function DrawCircle (x, y, r, s, sw, c) {
+function DrawCircle (x, y, r, s, sw, c, rot, bl) {
 	let circle = document.createElementNS(ns, 'circle');
 	circle.setAttributeNS(null, 'cx', x);
 	circle.setAttributeNS(null, 'cy', y);
@@ -43,6 +54,9 @@ function DrawCircle (x, y, r, s, sw, c) {
 	circle.setAttributeNS(null, 'fill', c);
 	circle.setAttributeNS(null, 'stroke', s);
 	circle.setAttributeNS(null, 'stroke-width', sw);
+	circle.setAttributeNS(null, 'transform', "rotate(" + rot + ", " + x + ", "+ y +")");
+	gauseBlur.setAttribute('stDeviation', bl);
+	circle.setAttributeNS(null, 'filter', 'url(#blurFilter)');
 	svg.appendChild(circle);
 }
 
