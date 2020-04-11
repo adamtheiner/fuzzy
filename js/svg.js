@@ -1,10 +1,12 @@
 'use strict';
 var ns = 'http://www.w3.org/2000/svg';
-var div = document.getElementById('drawing');
+var divSvg = document.getElementById('drawing');
 var svg = document.createElementNS(ns, 'svg');
 svg.setAttributeNS(null, 'width', '100%');
 //svg.setAttributeNS(null, 'height', '100%');
-div.appendChild(svg);
+if (divSvg) {
+	divSvg.appendChild(svg);
+}
 
 var NodesTop = [];
 var NodesBottom = [];
@@ -89,8 +91,10 @@ function DrawNodes () {
 	}
 }
 
-function DrawLines() {
-	
+function DrawLines(lines) {
+	for (var i = 0; i < lines.Length; i++) {
+		DrawLine(lines[i].x1, lines[i].y1, lines[i].x2, lines[i].y2, lines[i].sw, lines[i].c);
+	}
 }
 
 function DrawRoundedRect (x, y, w, h, r, sw, cs, cf) {
@@ -112,8 +116,18 @@ function DrawSock (posX, posY) {
 	sock.setAttribute('stroke', 'black');
 	sock.setAttribute('stroke-width', 0.333);
 	sock.setAttribute('fill', '#e3e3e3')
-	//sock.setAttribute('d', 'M' + (posX) + ' ' + (posY) + ' h 30 v 30 h -30 z'); // sock path
+	//sock.setAttribute('d', 'M' + (posX) + ' ' + (posY) + 'c20 40, 5 25, 90 50'); // sock path
 	svg.appendChild(sock);
+}
+
+function DrawStartButton (isStarted, posX, posY) {
+	let colorButton;
+	if (!isStarted) {
+		colorButton = 'green';
+	} else {
+		colorButton = 'red';
+	}
+	DrawCircle (posX, posY, 10, '#000', 0.222, colorButton);
 }
 
 //SetNodesCoordinates(9, 22);
