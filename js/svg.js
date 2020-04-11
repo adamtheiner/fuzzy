@@ -120,14 +120,14 @@ function DrawSock (posX, posY) {
 	svg.appendChild(sock);
 }
 
-function DrawStartButton (isStarted, posX, posY) {
+function DrawStartButton (isStarted, posX, posY, radius) {
 	let colorButton;
 	if (!isStarted) {
 		colorButton = 'green';
 	} else {
 		colorButton = 'red';
 	}
-	DrawCircle (posX, posY, 10, '#000', 0.222, colorButton);
+	DrawCircle (posX, posY, radius, '#000', 0.222, colorButton);
 }
 
 //SetNodesCoordinates(9, 22);
