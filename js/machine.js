@@ -46,9 +46,10 @@ function DrawMachine() {
     let washingDrumX = sizes.grW / 2;
     let washingDrumY = svgFrame.clientHeight / 2 + (machineHeight / 5) / 3;
     let drumRadius = (machineWidth / 2 + machineWidth / 7) / 2;
-    DrawLine(posX, posY + machineHeight / 5, posX + machineWidth, posY + machineHeight / 5, 2, '#8696a0');
+    DrawLine(posX, posY + machineHeight / 5, posX + machineWidth, posY + machineHeight / 5, 2, '#8696a0', 0, 0);
     DrawCircle(washingDrumX, washingDrumY, drumRadius, '#8696a0', 2, '#fff');
-    DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, '#8696a0', 2, '#fff');
+    DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, '#8696a0', 2, "url(#linear-gradient)", 20, 0);
+	DrawCircle(washingDrumX, washingDrumY, drumRadius-drumRadius/3, 'rgba(255,255,255,0.444)', 10, 'rgba(255,255,255,0.222)', 0, 12);
     DrawLine(
         washingDrumX + (drumRadius - drumRadius / 5),
         washingDrumY - drumRadius / 4,
