@@ -52,5 +52,8 @@ function DrawMachine() {
         washingDrumX + (drumRadius - drumRadius / 5),
         washingDrumY + drumRadius / 4,
         12, '#8696a0');
-	DrawStartButton(isStarted, posX, posY);
+	let posStartButtonX = posX + machineWidth / 10;
+	let posStartButtonY = posY + machineWidth / 10;
+	let startButtonRadius = machineWidth / 25;
+	DrawStartButton(isStarted, posStartButtonX, posStartButtonY, startButtonRadius);
 }
