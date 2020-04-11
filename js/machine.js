@@ -8,6 +8,7 @@ var machineHeight;
 var posX;
 var posY;
 var isStarted = false;
+var washTimeStr = '00:00 min';
 
 function ComputeSizes() { //вычисление размеров видимой области окна браузера return (grH: grHeight, grW: grWidth)
     let windowWidth = document.body.clientWidth;
@@ -21,6 +22,8 @@ function ComputeSizes() { //вычисление размеров видимой
 
 machineGR.setAttribute('height', sizes.grH);
 svgFrame.setAttribute('height', sizes.grH - sizes.grH / 4);
+
+
 
 DrawMachine();
 
@@ -51,9 +54,11 @@ function DrawMachine() {
         washingDrumY - drumRadius / 4,
         washingDrumX + (drumRadius - drumRadius / 5),
         washingDrumY + drumRadius / 4,
-        12, '#8696a0');
+        drumRadius / 10,
+        '#8696a0');
 	let posStartButtonX = posX + machineWidth / 10;
 	let posStartButtonY = posY + machineWidth / 10;
 	let startButtonRadius = machineWidth / 25;
 	DrawStartButton(isStarted, posStartButtonX, posStartButtonY, startButtonRadius);
+	DrawWashTimeTable(posX, posY, machineWidth, washTimeStr);
 }
