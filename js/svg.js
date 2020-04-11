@@ -154,8 +154,8 @@ function DrawStartButton (isStarted, posX, posY, radius) {
 	} else {
 		colorButton = 'red';
 	}
-	DrawCircle (posX, posY, radius, '#000', 0.222, colorButton);
-	DrawCircle (posX, posY, radius - radius/7, '#fff', 2.22, colorButton);
+	DrawCircle (posX, posY, radius, '#000', 0.222, colorButton, 0, 0);
+	DrawCircle (posX, posY, radius - radius/7, '#fff', 2.22, colorButton, 0, 0);
 }
 
 function DrawWashTimeTable (posX, posY, scaledMachineSize, washTimeStr) {
