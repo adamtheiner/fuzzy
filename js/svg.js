@@ -152,26 +152,29 @@ function DrawWashTimeTable (posX, posY, scaledMachineSize, washTimeStr) {
 	let hours = 1;   //===============================================hours
 	let minutes = 10;
 	DrawRoundedRect (tablePosX, tablePosY, tableWidth, tableHeight, 4, 2, machineColor, 'rgba(0, 0, 0, 0.777)');
-	DrawHours(hours);
-	DrawMinutes(minutes);
+	DrawHours(hours, minutes);
 }
 
-function DrawHours (hours) {
-	var hoursText = "00:";
+function DrawHours (hours, minutes) {
+	var hoursText = "00";
 	switch(hours) {
-		case 0: hoursText = "00:";
+		case 0: hoursText = "00";
 		break;
-		case 1: hoursText = "01:";
+		case 1: hoursText = "01";
 		break;
 	}
-	DrawCipher(hoursText);
+	DrawText(tablePosX+tableWidth/10, tablePosY+tableHeight-tableWidth/15, 1, hoursText + ':' + minutes);
 }
 
-function DrawMinutes(minutes) {
-}
-
-function DrawCipher (cipher) {
-	console.log(cipher);
+function DrawText (posX, posY, scale, textContent) {
+	var textElement = document.createElementNS(ns,'text');
+	textElement.setAttribute('x', posX);
+	textElement.setAttribute('y', posY);
+	textElement.setAttribute('fill', cipherColor);
+	textElement.setAttribute('class', 'cipher');
+	textElement.setAttribute('style', 'font-size: ' + (tableHeight - tableHeight / 12) + 'px');
+	textElement.innerHTML = textContent;
+	svg.appendChild(textElement);
 }
 
 //SetNodesCoordinates(9, 22);
