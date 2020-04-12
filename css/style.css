@@ -45,3 +45,11 @@ button:focus,
 #content{
 	height: 100%;
 }
+
+.no_wrap{
+	white-space: nowrap;
+}
+
+.cipher{
+	font-family: Consolas;
+}
