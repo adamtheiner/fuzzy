@@ -13,12 +13,13 @@ var linearGradient = document.createElementNS(ns, 'linearGradient');
 linearGradient.setAttribute('id', 'linear-gradient');
 svg.appendChild(linearGradient);
 linearGradient.innerHTML = `
-	<stop offset="0%" stop-color="#ffffff"/>
-	<stop offset="10%" stop-color="#ade6fe"/>
+	<stop offset="0%" stop-color="#dbdbdb"/>
+	<stop offset="10%" stop-color="#dbdbdb"/>
 	<stop offset="15%" stop-color="#ffffff"/>
-	<stop offset="30%" stop-color="#ade6fe"/>
+	<stop offset="30%" stop-color="#dbdbdb"/>
 	<stop offset="35%" stop-color="#ffffff"/>
-	<stop offset="100%" stop-color="#ade6fe"/>
+	<stop offset="40%" stop-color="#dbdbdb"/>
+	<stop offset="100%" stop-color="#dbdbdb"/>
 `;
 
 //svg.setAttributeNS(null, 'height', '100%');
