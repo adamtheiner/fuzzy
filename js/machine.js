@@ -76,13 +76,13 @@ var compute_cell = Wear[1];
 function WearSelection () {
 	console.log(this.id);
 	if (this.id == 'socks_cell') {
-		compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="180" height="180" border="0" alt="1r1">';
+		compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="256" height="256" border="0" alt="1r1">';
 	}
 	if (this.id == 'pants_cell') {
-		compute_cell.innerHTML = '<img id="socks_cell" src="files/pants.png" width="180" height="180" border="0" alt="1r1">';
+		compute_cell.innerHTML = '<img id="socks_cell" src="files/pants.png" width="256" height="256" border="0" alt="1r1">';
 	}
 	if (this.id == 'tshirt_cell') {
-		compute_cell.innerHTML = '<img id="socks_cell" src="files/tshirt.png" width="180" height="180" border="0" alt="1r1">';
+		compute_cell.innerHTML = '<img id="socks_cell" src="files/tshirt.png" width="256" height="256" border="0" alt="1r1">';
 	}
 }
 
