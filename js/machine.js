@@ -46,10 +46,10 @@ function DrawMachine() {
     let washingDrumX = sizes.grW / 2;
     let washingDrumY = svgFrame.clientHeight / 2 + (machineHeight / 5) / 3;
     let drumRadius = (machineWidth / 2 + machineWidth / 7) / 2;
-    DrawLine(posX, posY + machineHeight / 5, posX + machineWidth, posY + machineHeight / 5, 2, '#8696a0', 0, 0);
+    DrawLine(posX, posY + machineHeight / 5, posX + machineWidth, posY + machineHeight / 5, 2, '#8696a0');
     DrawCircle(washingDrumX, washingDrumY, drumRadius, '#8696a0', 2, '#fff', 0, 0);
     DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, '#8696a0', 2, "url(#linear-gradient)", 20, 0);
-    DrawCircle(washingDrumX, washingDrumY, drumRadius-drumRadius/3, 'rgba(255,255,255,0.444)', 10, 'rgba(255,255,255,0.222)', 0, 12);
+	DrawCircle(washingDrumX, washingDrumY, drumRadius-drumRadius/3, 'rgba(255,255,255,0.444)', 10, 'rgba(255,255,255,0.222)', 0, 12);
     DrawLine(
         washingDrumX + (drumRadius - drumRadius / 5),
         washingDrumY - drumRadius / 4,
@@ -65,6 +65,7 @@ function DrawMachine() {
 }
 
 //=======================================
+// Select wear
 
 var Wear = document.getElementsByTagName('td');
 Wear[0].onclick =  WearSelection;
@@ -75,7 +76,6 @@ var compute_cell = Wear[1];
 
 function WearSelection () {
 	document.getElementsByTagName('th')[0].innerText = ' ';
-	console.log(this.id);
 	if (this.id == 'socks_cell') {
 		compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="256" height="256" border="0" alt="1r1">';
 	}
@@ -87,3 +87,45 @@ function WearSelection () {
 	}
 }
 
+//=========================================
+// Create greasy + dirt
+
+// drag-n-drop
+range_cell.onmousedown = function(event) {// (1) отследить нажатие
+	var range_cell = document.getElementById('range_cell').firstChild;
+	range_cell.style.cursor = "grabbing";
+	// (2) подготовить к перемещению:
+	// разместить поверх остального содержимого и в абсолютных координатах
+	range_cell.style.position = 'absolute';
+	range_cell.style.zIndex = 1000;
+	// переместим в body, чтобы мяч был точно не внутри position:relative
+	document.body.append(range_cell);
+	// и установим абсолютно спозиционированный мяч под курсор
+
+	moveAt(event.pageX, event.pageY);
+
+	// передвинуть мяч под координаты курсора
+	// и сдвинуть на половину ширины/высоты для центрирования
+	function moveAt(pageX, pageY) {
+		range_cell.style.left = pageX - range_cell.offsetWidth / 2 + 'px';
+		range_cell.style.top = pageY - range_cell.offsetHeight / 2 + 'px';
+	}
+
+	function onMouseMove(event) {
+		moveAt(event.pageX, event.pageY);
+	}
+
+	// (3) перемещать по экрану
+	document.addEventListener('mousemove', onMouseMove);
+
+	// (4) положить мяч, удалить более ненужные обработчики событий
+	range_cell.onmouseup = function() {
+		range_cell.style.left = this.getBoundingClientRect().X + 256;
+		range_cell.style.top = this.getBoundingClientRect().Y + 256;
+		range_cell.setAttribute('width', '32px');
+		range_cell.setAttribute('height', '32px');
+		document.removeEventListener('mousemove', onMouseMove);
+		range_cell.onmouseup = null;
+	};
+
+};
