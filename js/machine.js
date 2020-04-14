@@ -63,3 +63,26 @@ function DrawMachine() {
 	DrawStartButton(isStarted, posStartButtonX, posStartButtonY, startButtonRadius);
 	DrawWashTimeTable(posX, posY, machineWidth, washTimeStr);
 }
+
+//=======================================
+
+var Wear = document.getElementsByTagName('td');
+Wear[0].onclick =  WearSelection;
+Wear[2].onclick =  WearSelection;
+Wear[3].onclick =  WearSelection;
+
+var compute_cell = Wear[1];
+
+function WearSelection () {
+	console.log(this.id);
+	if (this.id == 'socks_cell') {
+		compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="180" height="180" border="0" alt="1r1">';
+	}
+	if (this.id == 'pants_cell') {
+		compute_cell.innerHTML = '<img id="socks_cell" src="files/pants.png" width="180" height="180" border="0" alt="1r1">';
+	}
+	if (this.id == 'tshirt_cell') {
+		compute_cell.innerHTML = '<img id="socks_cell" src="files/tshirt.png" width="180" height="180" border="0" alt="1r1">';
+	}
+}
+
