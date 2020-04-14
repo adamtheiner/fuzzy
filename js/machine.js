@@ -74,6 +74,7 @@ Wear[3].onclick =  WearSelection;
 var compute_cell = Wear[1];
 
 function WearSelection () {
+	document.getElementsByTagName('th')[0].innerText = ' ';
 	console.log(this.id);
 	if (this.id == 'socks_cell') {
 		compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="256" height="256" border="0" alt="1r1">';
