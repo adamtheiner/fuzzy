@@ -1,7 +1,7 @@
 @font-face {
 	font-family: Minecart LCD;
 	src: local(Minecart LCD), url(files/Minecart.ttf);
-	src: url(files/Minecart.ttf);
+	src: url(../files/Minecart.ttf);
 }
 body{
 	height: 100vh;
