@@ -91,21 +91,15 @@ function WearSelection () {
 // Create greasy + dirt
 
 // drag-n-drop
-range_cell.onmousedown = function(event) {// (1) отследить нажатие
+range_cell.onmousedown = function(event) {
 	var range_cell = document.getElementById('range_cell').firstChild;
 	range_cell.style.cursor = "grabbing";
-	// (2) подготовить к перемещению:
-	// разместить поверх остального содержимого и в абсолютных координатах
 	range_cell.style.position = 'absolute';
 	range_cell.style.zIndex = 1000;
-	// переместим в body, чтобы мяч был точно не внутри position:relative
 	document.body.append(range_cell);
-	// и установим абсолютно спозиционированный мяч под курсор
 
 	moveAt(event.pageX, event.pageY);
 
-	// передвинуть мяч под координаты курсора
-	// и сдвинуть на половину ширины/высоты для центрирования
 	function moveAt(pageX, pageY) {
 		range_cell.style.left = pageX - range_cell.offsetWidth / 2 + 'px';
 		range_cell.style.top = pageY - range_cell.offsetHeight / 2 + 'px';
@@ -115,10 +109,8 @@ range_cell.onmousedown = function(event) {// (1) отследить нажати
 		moveAt(event.pageX, event.pageY);
 	}
 
-	// (3) перемещать по экрану
 	document.addEventListener('mousemove', onMouseMove);
 
-	// (4) положить мяч, удалить более ненужные обработчики событий
 	range_cell.onmouseup = function() {
 		range_cell.style.left = this.getBoundingClientRect().X + 256;
 		range_cell.style.top = this.getBoundingClientRect().Y + 256;
