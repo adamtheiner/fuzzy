@@ -47,7 +47,7 @@ x - координата, У - координата,
 r - радиус, с - цвет
 (строка типа '#777' или '#7f7f7c')*/
 ///
-function DrawCircle (x, y, r, s, sw, c, rot, bl) {
+function DrawCircle (x, y, r, s, sw, c, rot, Id) {
 	let circle = document.createElementNS(ns, 'circle');
 	circle.setAttributeNS(null, 'cx', x);
 	circle.setAttributeNS(null, 'cy', y);
@@ -56,7 +56,7 @@ function DrawCircle (x, y, r, s, sw, c, rot, bl) {
 	circle.setAttributeNS(null, 'stroke', s);
 	circle.setAttributeNS(null, 'stroke-width', sw);
 	circle.setAttributeNS(null, 'transform', "rotate(" + rot + ", " + x + ", "+ y +")");
-	gauseBlur.setAttribute('stDeviation', bl);
+	circle.setAttributeNS(null, 'id', Id);
 	circle.setAttributeNS(null, 'filter', 'url(#blurFilter)');
 	svg.appendChild(circle);
 }
@@ -164,8 +164,8 @@ function DrawWashTimeTable (posX, posY, scaledMachineSize, washTimeStr) {
 	tablePosY = posY + scaledMachineSize / 21;
 	tableWidth = scaledMachineSize / 2 - scaledMachineSize / 21;
 	tableHeight = scaledMachineSize / 7;
-	let hours = 1;   //===============================================hours
-	let minutes = 10;
+	let hours = 0;   //===============================================hours
+	let minutes = 34;
 	DrawRoundedRect (tablePosX, tablePosY, tableWidth, tableHeight, 4, 2, machineColor, 'rgba(0, 0, 0, 0.777)');
 	DrawHours(hours, minutes);
 }
@@ -187,12 +187,21 @@ function DrawText (posX, posY, scale, textContent) {
 	textElement.setAttribute('y', posY);
 	textElement.setAttribute('fill', cipherColor);
 	textElement.setAttribute('class', 'cipher');
-	textElement.setAttribute('style', 'font-size: ' + (tableHeight - tableHeight / 12) + 'px');
+	textElement.setAttribute('style', 'font-size: ' + (tableHeight - tableHeight / 3) + 'px;');
 	textElement.innerHTML = textContent;
 	svg.appendChild(textElement);
 }
 
+function drawImg (Image, X, Y, W, H, Rot, rotX, rotY) {
+	var imageElement = document.createElementNS(ns,'image');
+	imageElement.setAttribute('href', Image);
+	imageElement.setAttribute('x', X);
+	imageElement.setAttribute('y', Y);
+	imageElement.setAttribute('width', W);
+	imageElement.setAttribute('height', H);
+	imageElement.setAttribute('transform', 'rotate(' + Rot + ', ' + rotX + ', ' + rotY + ')');
+	svg.appendChild(imageElement);
+}
 //SetNodesCoordinates(9, 22);
-
 //DrawNodes();
 
