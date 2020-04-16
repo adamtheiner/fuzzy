@@ -48,8 +48,8 @@ function DrawMachine() {
     let drumRadius = (machineWidth / 2 + machineWidth / 7) / 2;
     DrawLine(posX, posY + machineHeight / 5, posX + machineWidth, posY + machineHeight / 5, 2, '#8696a0');
     DrawCircle(washingDrumX, washingDrumY, drumRadius, '#8696a0', 2, '#fff', 0, 0);
-    DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, '#8696a0', 2, "url(#linear-gradient)", 20, 0);
-	DrawCircle(washingDrumX, washingDrumY, drumRadius-drumRadius/3, 'rgba(255,255,255,0.444)', 10, 'rgba(255,255,255,0.222)', 12, 'MachineDrum');
+    DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, 'rgba(134, 150, 160, 0.555)', 2, "url(#linear-gradient)", 20, 'MachineDrum');
+	DrawCircle(washingDrumX, washingDrumY, drumRadius-drumRadius/3, 'rgba(255, 255, 255, 0.444)', 10, 'rgba(255,255,255,0.222)', 12, 'MachineDrumDecor');
     DrawLine(
         washingDrumX + (drumRadius - drumRadius / 5),
         washingDrumY - drumRadius / 4,
@@ -75,7 +75,7 @@ Wear[3].onclick =  WearSelection;
 var compute_cell = Wear[1];
 
 function WearSelection () {
-	document.getElementsByTagName('th')[0].innerText = ' ';
+	//document.getElementsByTagName('th')[0].innerText = ' ';
 	if (this.id == 'socks_cell') {
 		compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="256" height="256" border="0" alt="1r1">';
 	}
@@ -129,7 +129,8 @@ range_cell.onmousedown = function(event) {
 			machineWidth / 5,
 			Math.random() * 100,
 			imgX,
-			imgY
+			imgY,
+			drum
 		);
 		range_cell.remove();
 	};
