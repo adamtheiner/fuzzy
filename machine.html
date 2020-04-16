@@ -33,7 +33,7 @@
 						<h1 class="display-5">Fuzzy logic</h1>
 						<p class="lead">
 							This project demonstrates 
-							<a href="https:/fuzzy/">fuzzy logic</a>
+							<a href="/fuzzy/">fuzzy logic</a>
 							in the context of a simulation of a washing machine
 						</p>
 					</header>
@@ -50,38 +50,42 @@
 							<label for="wash_Weight">Dirt quality</label>
 							<input id="wash_Weight" type="range" class="custom-range" min="0.05" max="1" step="0.01" value="0.2">
 							<small id="wash_WeightHelp" class="form-text text-muted">Please select a <strong>dirt quality</strong></small>
-
-<br/>
-<table border="0" style="width: 100%;">
-	<thead>
-		<tr rowspan="2">
-			<th class="thead-dark" scope="col">Select wear and define greasy (dirt)</th>
-		</tr>
-	</thead>
-	<tr>
-		<td id="socks_cell">
-			<img id="compute_cell" src="files/socks.png" width="96" height="96" border="0" alt="1r1">
-		</td>
-		<td id="range_cell" rowspan="3"><!-- compute cell -->
-			<!-- <img src="files/pants.png" width="180" height="180" border="0" alt="2r1"> -->
-		</td>
-	</tr>
-	<tr>
-		<td id="pants_cell">
-			<img src="files/pants.png" width="96" height="96" border="0" alt="2r1">
-		</td>
-	</tr>
-	<tr>
-		<td id="tshirt_cell">
-			<img src="files/tshirt.png" width="96" height="96" border="0" alt="3r1">
-		</td>
-	</tr>
-</table>
-
-
+							<br>
+							<table border="0" style="width: 100%;">
+								<thead>
+									<tr>
+										<th colspan="2" class="thead-dark" scope="col">Select wear and define greasy (dirt)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td id="socks_cell">
+											<img id="compute_cell" src="files/socks.png" width="96" height="96" border="0" alt="1r1">
+										</td>
+										<td id="range_cell" rowspan="3"><!-- compute cell -->
+											<!-- <img src="files/pants.png" width="180" height="180" border="0" alt="2r1"> -->
+										</td>
+									</tr>
+									<tr>
+										<td id="pants_cell">
+											<img src="files/pants.png" width="96" height="96" border="0" alt="2r1">
+										</td>
+									</tr>
+									<tr>
+										<td id="tshirt_cell">
+											<img src="files/tshirt.png" width="96" height="96" border="0" alt="3r1">
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 						<div id="drawing" class="col">
 							<!-- You brouser non support SVG :( -->
+						</div>
+					</div>
+					<div id="" class="row">
+						<div id="" class="col">
+							<p>Total greasy: <span class="">0.763</span> | Total dirt: <span class="">0.408</span> | Total weight: <span class="">3.71</span> kg</p>
 						</div>
 					</div>
 				</div>
@@ -92,8 +96,6 @@
 		<script src="js/bootstrap.min.js" crossorigin="anonymous"></script>
 		<script src="js/svg.js" crossorigin="anonymous"></script>
 		<!-- <script src="js/main.js" crossorigin="anonymous"></script> -->
-		<!-- <script src="js/expert.js" crossorigin="anonymous"></script> -->
-		<!-- <script src="js/common.js" crossorigin="anonymous"></script> -->
 		<script src="js/machine.js" crossorigin="anonymous"></script>
 		<script src="js/linearHebbEducation.js" crossorigin="anonymous"></script>
 		<script src="js/improvedAlgorithm.js" crossorigin="anonymous"></script>
