@@ -13,13 +13,13 @@ var linearGradient = document.createElementNS(ns, 'linearGradient');
 linearGradient.setAttribute('id', 'linear-gradient');
 svg.appendChild(linearGradient);
 linearGradient.innerHTML = `
-	<stop offset="0%" stop-color="#dbdbdb"/>
-	<stop offset="10%" stop-color="#dbdbdb"/>
+	<stop offset="0%" stop-color="rgba(222, 222, 222, 0.555)"/>
+	<stop offset="10%" stop-color="rgba(222, 222, 222, 0.555)"/>
 	<stop offset="15%" stop-color="#ffffff"/>
-	<stop offset="30%" stop-color="#dbdbdb"/>
+	<stop offset="30%" stop-color="rgba(222, 222, 222, 0.555)"/>
 	<stop offset="35%" stop-color="#ffffff"/>
-	<stop offset="40%" stop-color="#dbdbdb"/>
-	<stop offset="100%" stop-color="#dbdbdb"/>
+	<stop offset="40%" stop-color="rgba(222, 222, 222, 0.555)"/>
+	<stop offset="100%" stop-color="rgba(222, 222, 222, 0.555)"/>
 `;
 
 //svg.setAttributeNS(null, 'height', '100%');
@@ -192,15 +192,15 @@ function DrawText (posX, posY, scale, textContent) {
 	svg.appendChild(textElement);
 }
 
-function drawImg (Image, X, Y, W, H, Rot, rotX, rotY) {
+function drawImg (Image, X, Y, W, H, Rot, rotXcenter, rotYcenter, referenceElement) {
 	var imageElement = document.createElementNS(ns,'image');
 	imageElement.setAttribute('href', Image);
 	imageElement.setAttribute('x', X);
 	imageElement.setAttribute('y', Y);
 	imageElement.setAttribute('width', W);
 	imageElement.setAttribute('height', H);
-	imageElement.setAttribute('transform', 'rotate(' + Rot + ', ' + rotX + ', ' + rotY + ')');
-	svg.appendChild(imageElement);
+	imageElement.setAttribute('transform', 'rotate(' + Rot + ', ' + rotXcenter + ', ' + rotYcenter + ')');
+	svg.insertBefore(imageElement, referenceElement);
 }
 //SetNodesCoordinates(9, 22);
 //DrawNodes();
