@@ -139,15 +139,6 @@ function DrawRoundedRect (x, y, w, h, r, sw, cs, cf) {
 	svg.appendChild(roundRect);
 }
 
-function DrawSock (posX, posY) {
-	var sock = document.createElementNS(ns,'path');
-	sock.setAttribute('stroke', 'black');
-	sock.setAttribute('stroke-width', 0.333);
-	sock.setAttribute('fill', '#e3e3e3')
-	//sock.setAttribute('d', 'M' + (posX) + ' ' + (posY) + 'c20 40, 5 25, 90 50'); // sock path
-	svg.appendChild(sock);
-}
-
 function DrawStartButton (isStarted, posX, posY, radius) {
 	let colorButton;
 	if (!isStarted) {
@@ -194,6 +185,7 @@ function DrawText (posX, posY, scale, textContent) {
 
 function drawImg (Image, X, Y, W, H, Rot, rotXcenter, rotYcenter, referenceElement) {
 	var imageElement = document.createElementNS(ns,'image');
+	imageElement.setAttribute('class', 'beRotate');
 	imageElement.setAttribute('href', Image);
 	imageElement.setAttribute('x', X);
 	imageElement.setAttribute('y', Y);
