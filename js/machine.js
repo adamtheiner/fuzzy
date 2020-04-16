@@ -49,7 +49,7 @@ function DrawMachine() {
     DrawLine(posX, posY + machineHeight / 5, posX + machineWidth, posY + machineHeight / 5, 2, '#8696a0');
     DrawCircle(washingDrumX, washingDrumY, drumRadius, '#8696a0', 2, '#fff', 0, 0);
     DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, '#8696a0', 2, "url(#linear-gradient)", 20, 0);
-	DrawCircle(washingDrumX, washingDrumY, drumRadius-drumRadius/3, 'rgba(255,255,255,0.444)', 10, 'rgba(255,255,255,0.222)', 0, 12);
+	DrawCircle(washingDrumX, washingDrumY, drumRadius-drumRadius/3, 'rgba(255,255,255,0.444)', 10, 'rgba(255,255,255,0.222)', 12, 'MachineDrum');
     DrawLine(
         washingDrumX + (drumRadius - drumRadius / 5),
         washingDrumY - drumRadius / 4,
@@ -85,17 +85,17 @@ function WearSelection () {
 	if (this.id == 'tshirt_cell') {
 		compute_cell.innerHTML = '<img id="socks_cell" src="files/tshirt.png" width="256" height="256" border="0" alt="1r1">';
 	}
+	range_cell.style.cursor = "grabbing";
 }
-
+var drum = document.getElementById('MachineDrum');
 //=========================================
 // Create greasy + dirt
 
 // drag-n-drop
 range_cell.onmousedown = function(event) {
 	var range_cell = document.getElementById('range_cell').firstChild;
-	range_cell.style.cursor = "grabbing";
 	range_cell.style.position = 'absolute';
-	range_cell.style.zIndex = 1000;
+	//range_cell.style.zIndex = 1000;
 	document.body.append(range_cell);
 
 	moveAt(event.pageX, event.pageY);
@@ -118,6 +118,22 @@ range_cell.onmousedown = function(event) {
 		range_cell.setAttribute('height', '32px');
 		document.removeEventListener('mousemove', onMouseMove);
 		range_cell.onmouseup = null;
+		moveAt(event.clientX+128, event.clientY+128);
+		let imgX = posX +  machineWidth / 2 + machineWidth / 21 - Math.random() * 10;
+		let imgY = posY + machineHeight / 2 + machineWidth / 21 + Math.random() * 10;
+		drawImg(
+			range_cell.getAttribute('src'),
+			imgX,
+			imgY,
+			machineWidth / 5,
+			machineWidth / 5,
+			Math.random() * 100,
+			imgX,
+			imgY
+		);
+		range_cell.remove();
+		console.log(drum);
 	};
-
 };
+
+//
