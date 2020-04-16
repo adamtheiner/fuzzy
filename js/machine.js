@@ -47,9 +47,11 @@ function DrawMachine() {
     let washingDrumY = svgFrame.clientHeight / 2 + (machineHeight / 5) / 3;
     let drumRadius = (machineWidth / 2 + machineWidth / 7) / 2;
     DrawLine(posX, posY + machineHeight / 5, posX + machineWidth, posY + machineHeight / 5, 2, '#8696a0');
-    DrawCircle(washingDrumX, washingDrumY, drumRadius, '#8696a0', 2, '#fff', 0, 0);
+   
     DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, 'rgba(134, 150, 160, 0.555)', 2, "url(#linear-gradient)", 20, 'MachineDrum');
 	DrawCircle(washingDrumX, washingDrumY, drumRadius-drumRadius/3, 'rgba(255, 255, 255, 0.444)', 10, 'rgba(255,255,255,0.222)', 12, 'MachineDrumDecor');
+	DrawCircle(washingDrumX, washingDrumY, drumRadius, '#8696a0', 2, 'rgba(0, 184, 255, 0.01)', 0, 'outerCircle');
+	DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, 'rgba(255, 255, 255, 1)', drumRadius / 7, 'rgba(0, 0, 0, 0)', 0, 'outCircle');
     DrawLine(
         washingDrumX + (drumRadius - drumRadius / 5),
         washingDrumY - drumRadius / 4,
@@ -95,7 +97,7 @@ var drum = document.getElementById('MachineDrum');
 range_cell.onmousedown = function(event) {
 	var range_cell = document.getElementById('range_cell').firstChild;
 	range_cell.style.position = 'absolute';
-	//range_cell.style.zIndex = 1000;
+	range_cell.style.zIndex = 1000;
 	document.body.append(range_cell);
 
 	moveAt(event.pageX, event.pageY);
