@@ -132,7 +132,6 @@ range_cell.onmousedown = function(event) {
 			imgY
 		);
 		range_cell.remove();
-		console.log(drum);
 	};
 };
 
