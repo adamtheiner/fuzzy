@@ -16,24 +16,11 @@
 		<div id="content" class="container-fluid">
 			<div id="header" class="container">
 				<div id="" class="jumbotron jumbotron-fluid">
-					<nav class="navbar navbar-expand-lg navbar-light bg-light">
-						<h4>Hebbian Learning Algorithm — </h4>
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse" id="navbarNav">
-							<div id="" class="btn-group" role="group"  aria-label="Button group">
-								<a id="btn_Linear" class="btn btn-secondary" href="#" role="button">Linear</a>
-								<a id="btn_Nonlinear" class="btn" href="#" role="button">Non linear</a>
-								<a id="btn_ImprovedAlgorithm" class="btn" href="#" role="button">Improved algorithm</a>
-							</div>
-						</div>
-					</nav>
 					<header>
 						<h1 class="display-5">Fuzzy logic</h1>
 						<p class="lead">
 							This project demonstrates 
-							<a href="/fuzzy/">fuzzy logic</a>
+							<a href="/fuzzy/">fuzzy logic</a><!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 							in the context of a simulation of a washing machine
 						</p>
 					</header>
@@ -85,7 +72,18 @@
 					</div>
 					<div id="" class="row">
 						<div id="" class="col">
-							<p>Total greasy: <span class="">0.763</span> | Total dirt: <span class="">0.408</span> | Total weight: <span class="">3.71</span> kg</p>
+							<div id="" class="alert alert-success">
+								<blockquote class="blockquote text-center">
+									<p class="mb-0">
+										Total greasy: 
+										<span id="totalGreasySpan" class="">0.000</span> | 
+										Total dirt: 
+										<span id="totalDirtSpan" class="">0.000</span> | 
+										Total weight: 
+										<span id="totalWeightSpan" class="">0.00</span> kg
+									</p>
+								</blockquote>
+							</div>
 						</div>
 					</div>
 				</div>
