@@ -80,12 +80,15 @@ function WearSelection () {
 	//document.getElementsByTagName('th')[0].innerText = ' ';
 	if (this.id == 'socks_cell') {
 		compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="256" height="256" border="0" alt="1r1">';
+		AddWeight(0.02);
 	}
 	if (this.id == 'pants_cell') {
 		compute_cell.innerHTML = '<img id="socks_cell" src="files/pants.png" width="256" height="256" border="0" alt="1r1">';
+		AddWeight(0.33);
 	}
 	if (this.id == 'tshirt_cell') {
 		compute_cell.innerHTML = '<img id="socks_cell" src="files/tshirt.png" width="256" height="256" border="0" alt="1r1">';
+		AddWeight(0.11);
 	}
 	range_cell.style.cursor = "grabbing";
 }
@@ -136,6 +139,20 @@ range_cell.onmousedown = function(event) {
 		);
 		range_cell.remove();
 	};
+
 };
 
-//
+//==================================================
+var totalWeight = 0.00;
+var totalGreasy = 0.000;
+var totalDirt = 0.000;
+
+function AddWeight(weight) {
+	totalWeight += weight;
+	console.log(totalWeight);
+	let wSpan = document.getElementById('totalWeightSpan');
+	wSpan.innerText = totalWeight.toString().substr(0, 4);
+}
+
+
+// 
