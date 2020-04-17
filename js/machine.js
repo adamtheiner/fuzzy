@@ -2,6 +2,7 @@
 var machineGR = document.getElementById('machineGR');
 var drawingSVG = document.getElementById('drawing');
 var svgFrame = document.getElementsByTagName('svg')[0];
+var gSpan = document.getElementById('totalGreasySpan');
 var sizes = ComputeSizes();
 var machineWidth;
 var machineHeight;
@@ -9,6 +10,10 @@ var posX;
 var posY;
 var isStarted = false;
 var washTimeStr = '00:00 min';
+
+var totalWeight = 0.00;
+var totalGreasy = 0.000;
+var totalDirt = 0.000;
 
 function ComputeSizes() { //вычисление размеров видимой области окна браузера return (grH: grHeight, grW: grWidth)
     let windowWidth = document.body.clientWidth;
@@ -143,9 +148,6 @@ range_cell.onmousedown = function(event) {
 };
 
 //==================================================
-var totalWeight = 0.00;
-var totalGreasy = 0.000;
-var totalDirt = 0.000;
 
 function AddWeight(weight) {
 	totalWeight += weight;
@@ -154,5 +156,16 @@ function AddWeight(weight) {
 	wSpan.innerText = totalWeight.toString().substr(0, 4);
 }
 
+var gRangeInput = document.getElementById('greasyRangeInput');
+
+gRangeInput.onchange = AddGreasy;
+
+function AddGreasy () {
+	totalGreasy = gRangeInput.value;
+	console.log(totalGreasy);
+	gSpan.innerText = totalGreasy.toString().substr(0, 5);
+}
+
+//================================================
 
 // 
