@@ -139,17 +139,6 @@ function DrawRoundedRect (x, y, w, h, r, sw, cs, cf) {
 	svg.appendChild(roundRect);
 }
 
-function DrawStartButton (isStarted, posX, posY, radius) {
-	let colorButton;
-	if (!isStarted) {
-		colorButton = 'green';
-	} else {
-		colorButton = 'red';
-	}
-	DrawCircle (posX, posY, radius, '#000', 0.222, colorButton, 0, 0);
-	DrawCircle (posX, posY, radius - radius/7, '#fff', 2.22, colorButton, 0, 0);
-}
-
 function DrawWashTimeTable (posX, posY, scaledMachineSize, washTimeStr) {
 	tablePosX = posX + scaledMachineSize / 2;
 	tablePosY = posY + scaledMachineSize / 21;
