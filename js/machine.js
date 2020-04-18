@@ -20,10 +20,10 @@ var totalGreasy = 0.15;
 var totalDirt = 0.15;
 
 var washingTime = 120;
-var hours = 0;   //===============================================hours
-var minutes = 0;//=============================================minutes
+var hours = 0;
+var minutes = 0;
 
-function ComputeSizes() { //вычисление размеров видимой области окна браузера return (grH: grHeight, grW: grWidth)
+function ComputeSizes() {
     let windowWidth = document.body.clientWidth;
     let windowHeight = document.body.clientHeight;
     let headerHeight = document.getElementById('header').clientHeight;
@@ -71,7 +71,7 @@ function DrawMachine() {
 	);
 	let posStartButtonX = posX + machineWidth / 10;
 	let posStartButtonY = posY + machineWidth / 10;
-	let startButtonRadius = machineWidth / 25;
+	let startButtonRadius = machineWidth / 20;
 	DrawStartButton(isStarted, posStartButtonX, posStartButtonY, startButtonRadius);
 	DrawWashTimeTable(posX, posY, machineWidth);
 }
@@ -97,12 +97,31 @@ startButton.onclick = function () { // =========* MACHINE START *==========
 	startButton.setAttribute('fill', 'red');
 	ComputeWashingTime();
 	DrawWashTimeTable(posX, posY, machineWidth);
-
+	CountDown();
 	startButton.onclick = null;
 }
 
+var timerId;
+function CountDown () {
+	timerId = setInterval(TimerTick, 1000);
+}
+
+function TimerTick () {
+	washingTime -= 1;
+	if (washingTime >= 60) {
+	hours = 1;
+	minutes = washingTime - 60;
+	} else {
+		hours = 0;
+		minutes = washingTime;
+	}
+	DrawWashTimeTable(posX, posY, machineWidth);
+	if (washingTime == 0) {
+		clearInterval(timerId);
+	}
+}
+
 function ComputeWashingTime () {
-	//max washing time = 150 minutes
 	washingTime = washingTime * totalGreasy;
 	washingTime = washingTime * totalDirt;
 	washingTime = washingTime.toFixed();
