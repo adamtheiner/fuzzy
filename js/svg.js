@@ -76,9 +76,6 @@ function DrawLine (x1, y1, x2, y2, sw, c, b) {
 	svg.appendChild(line);
 }
 
-/* params:
-how many Nodes in the top row,
-how many Nodes in the bottom row*/
 function SetNodesCoordinates (topNodesNumber, bottomNodesNumber) { 
 	var svgFrameWidth = svg.clientWidth;
 	var svgFrameHeigth = svg.clientHeight;
@@ -139,17 +136,6 @@ function DrawRoundedRect (x, y, w, h, r, sw, cs, cf) {
 	svg.appendChild(roundRect);
 }
 
-function DrawWashTimeTable (posX, posY, scaledMachineSize, washTimeStr) {
-	tablePosX = posX + scaledMachineSize / 2;
-	tablePosY = posY + scaledMachineSize / 21;
-	tableWidth = scaledMachineSize / 2 - scaledMachineSize / 21;
-	tableHeight = scaledMachineSize / 7;
-	let hours = 0;   //===============================================hours
-	let minutes = 34;
-	DrawRoundedRect (tablePosX, tablePosY, tableWidth, tableHeight, 4, 2, machineColor, 'rgba(0, 0, 0, 0.777)');
-	DrawHours(hours, minutes);
-}
-
 function DrawHours (hours, minutes) {
 	var hoursText = "00";
 	switch(hours) {
@@ -158,7 +144,11 @@ function DrawHours (hours, minutes) {
 		case 1: hoursText = "01";
 		break;
 	}
-	DrawText(tablePosX+tableWidth/10, tablePosY+tableHeight-tableWidth/15, 1, hoursText + ':' + minutes);
+	let minutesText = minutes.toString(10);
+	if (minutesText.length < 2) {
+		minutesText = '0' + minutesText;
+	}
+	DrawText(tablePosX+tableWidth/10, tablePosY+tableHeight-tableWidth/15, 1, hoursText + ':' + minutesText);
 }
 
 function DrawText (posX, posY, scale, textContent) {
