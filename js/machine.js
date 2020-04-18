@@ -118,7 +118,18 @@ function TimerTick () {
 	DrawWashTimeTable(posX, posY, machineWidth);
 	if (washingTime == 0) {
 		clearInterval(timerId);
+		WashingEnd();
 	}
+}
+
+function WashingEnd () {
+	var popup = document.createElement('div');
+	popup.setAttribute('class', 'alert alert-primary');
+	popup.setAttribute('role', 'alert');
+	popup.innerHTML = '<h1>Washing is finished</h1>';
+	console.log(popup);
+	let Body = document.getElementById('contentHead');
+	Body.appendChild(popup);
 }
 
 function ComputeWashingTime () {
