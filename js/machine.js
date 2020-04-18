@@ -3,6 +3,7 @@ var machineGR = document.getElementById('machineGR');
 var drawingSVG = document.getElementById('drawing');
 var svgFrame = document.getElementsByTagName('svg')[0];
 var gSpan = document.getElementById('totalGreasySpan');
+var dSpan = document.getElementById('totalDirtSpan');
 var sizes = ComputeSizes();
 var machineWidth;
 var machineHeight;
@@ -28,18 +29,12 @@ function ComputeSizes() { //вычисление размеров видимой
 machineGR.setAttribute('height', sizes.grH);
 svgFrame.setAttribute('height', sizes.grH - sizes.grH / 4);
 
-
-
 DrawMachine();
-
-//DrawSock(100, 100);
-
-//================================
 
 function DrawMachine() {
     if (sizes.grH > sizes.grW) {
-    machineWidth = (sizes.grW - sizes.grW / 4) - 5;
-    machineHeight = (machineWidth + machineWidth / 4) - 5;
+		machineWidth = (sizes.grW - sizes.grW / 4) - 5;
+		machineHeight = (machineWidth + machineWidth / 4) - 5;
     }
     else {
         machineHeight = (sizes.grH - sizes.grH / 4) - 5;
@@ -63,7 +58,8 @@ function DrawMachine() {
         washingDrumX + (drumRadius - drumRadius / 5),
         washingDrumY + drumRadius / 4,
         drumRadius / 10,
-        '#8696a0');
+        '#8696a0'
+	);
 	let posStartButtonX = posX + machineWidth / 10;
 	let posStartButtonY = posY + machineWidth / 10;
 	let startButtonRadius = machineWidth / 25;
@@ -71,8 +67,28 @@ function DrawMachine() {
 	DrawWashTimeTable(posX, posY, machineWidth, washTimeStr);
 }
 
-//=======================================
-// Select wear
+function DrawStartButton (isStarted, posX, posY, radius) {
+	let colorButton;
+	if (!isStarted) {
+		isStarted = true;
+		colorButton = 'green';
+		DrawCircle (posX, posY, radius, '#000', 0.222, colorButton, 0, 'startRing');
+		DrawCircle (posX, posY, radius - radius/7, '#fff', 2.22, colorButton, 0, 'startButton');
+	} else {
+		isStarted = false;
+		colorButton = 'green';
+		DrawCircle (posX, posY, radius, '#000', 0.222, colorButton, 0, 'startRing');
+		DrawCircle (posX, posY, radius - radius/7, '#fff', 2.22, colorButton, 0, 'startButton');
+	}
+}
+
+var startButton = document.getElementById('startButton');
+
+startButton.onclick = function () {
+	console.log(startButton);
+	startButton.setAttribute('fill', 'red');
+}
+
 
 var Wear = document.getElementsByTagName('td');
 Wear[0].onclick =  WearSelection;
@@ -97,11 +113,9 @@ function WearSelection () {
 	}
 	range_cell.style.cursor = "grabbing";
 }
-var drum = document.getElementById('MachineDrum');
-//=========================================
-// Create greasy + dirt
 
-// drag-n-drop
+var drum = document.getElementById('MachineDrum');
+
 range_cell.onmousedown = function(event) {
 	var range_cell = document.getElementById('range_cell').firstChild;
 	range_cell.style.position = 'absolute';
@@ -144,10 +158,7 @@ range_cell.onmousedown = function(event) {
 		);
 		range_cell.remove();
 	};
-
 };
-
-//==================================================
 
 function AddWeight(weight) {
 	totalWeight += weight;
@@ -157,15 +168,22 @@ function AddWeight(weight) {
 }
 
 var gRangeInput = document.getElementById('greasyRangeInput');
+var dRangeInput = document.getElementById('dirtRangeInput');
 
 gRangeInput.onchange = AddGreasy;
+dRangeInput.onchange = AddDirt;
 
 function AddGreasy () {
-	totalGreasy = gRangeInput.value;
-	console.log(totalGreasy);
-	gSpan.innerText = totalGreasy.toString().substr(0, 5);
+	if (totalGreasy < gRangeInput.value) {
+		totalGreasy = gRangeInput.value;
+	}
+	gSpan.innerText = totalGreasy.toString().substr(0, 6);
 }
 
-//================================================
-
-// 
+function AddDirt () {
+	if (totalDirt < dRangeInput.value) {
+		totalDirt = dRangeInput.value;
+	}
+	console.log(dSpan)
+	dSpan.innerText = totalDirt.toString().substr(0, 6);
+}
