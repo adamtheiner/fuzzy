@@ -4,17 +4,24 @@ var drawingSVG = document.getElementById('drawing');
 var svgFrame = document.getElementsByTagName('svg')[0];
 var gSpan = document.getElementById('totalGreasySpan');
 var dSpan = document.getElementById('totalDirtSpan');
+var gRangeInput = document.getElementById('greasyRangeInput');
+var dRangeInput = document.getElementById('dirtRangeInput');
 var sizes = ComputeSizes();
 var machineWidth;
 var machineHeight;
 var posX;
 var posY;
+
 var isStarted = false;
 var washTimeStr = '00:00 min';
 
 var totalWeight = 0.00;
-var totalGreasy = 0.000;
-var totalDirt = 0.000;
+var totalGreasy = 0.15;
+var totalDirt = 0.15;
+
+var washingTime = 120;
+var hours = 0;   //===============================================hours
+var minutes = 0;//=============================================minutes
 
 function ComputeSizes() { //вычисление размеров видимой области окна браузера return (grH: grHeight, grW: grWidth)
     let windowWidth = document.body.clientWidth;
@@ -30,6 +37,8 @@ machineGR.setAttribute('height', sizes.grH);
 svgFrame.setAttribute('height', sizes.grH - sizes.grH / 4);
 
 DrawMachine();
+
+var drum = document.getElementById('MachineDrum');
 
 function DrawMachine() {
     if (sizes.grH > sizes.grW) {
@@ -64,7 +73,7 @@ function DrawMachine() {
 	let posStartButtonY = posY + machineWidth / 10;
 	let startButtonRadius = machineWidth / 25;
 	DrawStartButton(isStarted, posStartButtonX, posStartButtonY, startButtonRadius);
-	DrawWashTimeTable(posX, posY, machineWidth, washTimeStr);
+	DrawWashTimeTable(posX, posY, machineWidth);
 }
 
 function DrawStartButton (isStarted, posX, posY, radius) {
@@ -84,11 +93,27 @@ function DrawStartButton (isStarted, posX, posY, radius) {
 
 var startButton = document.getElementById('startButton');
 
-startButton.onclick = function () {
-	console.log(startButton);
+startButton.onclick = function () { // =========* MACHINE START *==========
 	startButton.setAttribute('fill', 'red');
+	ComputeWashingTime();
+	DrawWashTimeTable(posX, posY, machineWidth);
+
+	startButton.onclick = null;
 }
 
+function ComputeWashingTime () {
+	//max washing time = 150 minutes
+	washingTime = washingTime * totalGreasy;
+	washingTime = washingTime * totalDirt;
+	washingTime = washingTime.toFixed();
+	if (washingTime >= 60) {
+		hours = 1;
+		minutes = washingTime - 60;
+	} else {
+		hours = 0;
+		minutes = washingTime;
+	}
+}
 
 var Wear = document.getElementsByTagName('td');
 Wear[0].onclick =  WearSelection;
@@ -113,8 +138,6 @@ function WearSelection () {
 	}
 	range_cell.style.cursor = "grabbing";
 }
-
-var drum = document.getElementById('MachineDrum');
 
 range_cell.onmousedown = function(event) {
 	var range_cell = document.getElementById('range_cell').firstChild;
@@ -158,20 +181,16 @@ range_cell.onmousedown = function(event) {
 		);
 		range_cell.remove();
 	};
-};
-
-function AddWeight(weight) {
-	totalWeight += weight;
-	console.log(totalWeight);
-	let wSpan = document.getElementById('totalWeightSpan');
-	wSpan.innerText = totalWeight.toString().substr(0, 4);
 }
-
-var gRangeInput = document.getElementById('greasyRangeInput');
-var dRangeInput = document.getElementById('dirtRangeInput');
 
 gRangeInput.onchange = AddGreasy;
 dRangeInput.onchange = AddDirt;
+
+function AddWeight(weight) {
+	totalWeight += weight;
+	let wSpan = document.getElementById('totalWeightSpan');
+	wSpan.innerText = totalWeight.toString().substr(0, 4);
+}
 
 function AddGreasy () {
 	if (totalGreasy < gRangeInput.value) {
@@ -184,6 +203,14 @@ function AddDirt () {
 	if (totalDirt < dRangeInput.value) {
 		totalDirt = dRangeInput.value;
 	}
-	console.log(dSpan)
 	dSpan.innerText = totalDirt.toString().substr(0, 6);
+}
+
+function DrawWashTimeTable (posX, posY, scaledMachineSize) {
+	tablePosX = posX + scaledMachineSize / 2;
+	tablePosY = posY + scaledMachineSize / 21;
+	tableWidth = scaledMachineSize / 2 - scaledMachineSize / 21;
+	tableHeight = scaledMachineSize / 7;
+	DrawRoundedRect (tablePosX, tablePosY, tableWidth, tableHeight, 4, 2, machineColor, 'rgba(0, 0, 0, 0.777)');
+	DrawHours(hours, minutes);
 }
