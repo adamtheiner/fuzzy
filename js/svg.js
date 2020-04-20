@@ -65,14 +65,17 @@ function DrawCircle (x, y, r, s, sw, c, rot, Id) {
 x1 - координата начала, У1 - координата начала,
 x2 - координата конца, У2 - координата конца,
 th - толщина, с - цвет (строка типа '#777' или '#7f7f7c')*/
-function DrawLine (x1, y1, x2, y2, sw, c, b) {
+function DrawLine (x1, y1, x2, y2, stroke_width, stroke_color, stroke_linecap, stroke_blur, Id, rotate) {
 	var line = document.createElementNS(ns,'line');
 	line.setAttribute('x1', x1);
 	line.setAttribute('y1', y1);
 	line.setAttribute('x2', x2);
 	line.setAttribute('y2', y2);
-	line.setAttribute("stroke", c)
-	line.setAttribute('stroke-width', sw);
+	line.setAttribute("stroke", stroke_color)
+	line.setAttribute('stroke-width', stroke_width);
+	line.setAttribute('stroke-linecap', stroke_linecap);
+	line.setAttribute('id', Id);
+	line.setAttribute('transform', 'rotate('+rotate + ' '+ x1 + ' '+ y1+')');
 	svg.appendChild(line);
 }
 
