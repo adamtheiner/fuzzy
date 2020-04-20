@@ -6,6 +6,7 @@ var gSpan = document.getElementById('totalGreasySpan');
 var dSpan = document.getElementById('totalDirtSpan');
 var gRangeInput = document.getElementById('greasyRangeInput');
 var dRangeInput = document.getElementById('dirtRangeInput');
+var Head = document.getElementById('contentHead');
 var sizes = ComputeSizes();
 var machineWidth;
 var machineHeight;
@@ -19,7 +20,7 @@ var totalWeight = 0.00;
 var totalGreasy = 0.15;
 var totalDirt = 0.15;
 
-var washingTime = 120;
+var washingTime = 135;
 var hours = 0;
 var minutes = 0;
 
@@ -56,7 +57,7 @@ function DrawMachine() {
     let washingDrumY = svgFrame.clientHeight / 2 + (machineHeight / 5) / 3;
     let drumRadius = (machineWidth / 2 + machineWidth / 7) / 2;
     DrawLine(posX, posY + machineHeight / 5, posX + machineWidth, posY + machineHeight / 5, 2, '#8696a0');
-   
+	DrawDrumDecor(washingDrumX, washingDrumY, drumRadius);
     DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, 'rgba(134, 150, 160, 0.555)', 2, "url(#linear-gradient)", 20, 'MachineDrum');
 	DrawCircle(washingDrumX, washingDrumY, drumRadius-drumRadius/3, 'rgba(255, 255, 255, 0.444)', 10, 'rgba(255,255,255,0.222)', 12, 'MachineDrumDecor');
 	DrawCircle(washingDrumX, washingDrumY, drumRadius, '#8696a0', 2, 'rgba(0, 184, 255, 0.01)', 0, 'outerCircle');
@@ -76,18 +77,21 @@ function DrawMachine() {
 	DrawWashTimeTable(posX, posY, machineWidth);
 }
 
+function DrawDrumDecor (DrumX, DrumY, DrumRadius) {
+	DrawLine(DrumX, DrumY, DrumX, DrumY + DrumRadius / 2, DrumRadius / 5, '#8696a0', 'round', 0, 'drum_decor_1', 0);
+	DrawLine(DrumX, DrumY, DrumX, DrumY + DrumRadius / 2, DrumRadius / 5, '#8696a0', 'round', 0, 'drum_decor_2', 240);
+	DrawLine(DrumX, DrumY, DrumX, DrumY + DrumRadius / 2, DrumRadius / 5, '#8696a0', 'round', 0, 'drum_decor_3', 120);
+}
+
 function DrawStartButton (isStarted, posX, posY, radius) {
-	let colorButton;
 	if (!isStarted) {
 		isStarted = true;
-		colorButton = 'green';
-		DrawCircle (posX, posY, radius, '#000', 0.222, colorButton, 0, 'startRing');
-		DrawCircle (posX, posY, radius - radius/7, '#fff', 2.22, colorButton, 0, 'startButton');
+		DrawCircle (posX, posY, radius, '#000', 0.222, 'green', 0, 'startRing');
+		DrawCircle (posX, posY, radius - radius/7, '#fff', 2.22, 'green', 0, 'startButton');
 	} else {
 		isStarted = false;
-		colorButton = 'green';
-		DrawCircle (posX, posY, radius, '#000', 0.222, colorButton, 0, 'startRing');
-		DrawCircle (posX, posY, radius - radius/7, '#fff', 2.22, colorButton, 0, 'startButton');
+		DrawCircle (posX, posY, radius, '#000', 0.222, 'green', 0, 'startRing');
+		DrawCircle (posX, posY, radius - radius/7, '#fff', 2.22, 'green', 0, 'startButton');
 	}
 }
 
@@ -122,19 +126,20 @@ function TimerTick () {
 	}
 }
 
-function WashingEnd () {
+function WashingEnd () { // =========* MACHINE STOP *==========
+	startButton.setAttribute('fill', 'green');
 	var popup = document.createElement('div');
 	popup.setAttribute('class', 'alert alert-primary');
 	popup.setAttribute('role', 'alert');
 	popup.innerHTML = '<h1>Washing is finished</h1>';
 	console.log(popup);
-	let Body = document.getElementById('contentHead');
-	Body.appendChild(popup);
+	Head.appendChild(popup);
 }
 
 function ComputeWashingTime () {
 	washingTime = washingTime * totalGreasy;
 	washingTime = washingTime * totalDirt;
+	washingTime += 21;
 	washingTime = washingTime.toFixed();
 	if (washingTime >= 60) {
 		hours = 1;
@@ -155,15 +160,15 @@ var compute_cell = Wear[1];
 function WearSelection () {
 	//document.getElementsByTagName('th')[0].innerText = ' ';
 	if (this.id == 'socks_cell') {
-		compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="256" height="256" border="0" alt="1r1">';
+		compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="180" height="180" border="0" alt="1r1">';
 		AddWeight(0.02);
 	}
 	if (this.id == 'pants_cell') {
-		compute_cell.innerHTML = '<img id="socks_cell" src="files/pants.png" width="256" height="256" border="0" alt="1r1">';
+		compute_cell.innerHTML = '<img id="socks_cell" src="files/pants.png" width="180" height="180" border="0" alt="1r1">';
 		AddWeight(0.33);
 	}
 	if (this.id == 'tshirt_cell') {
-		compute_cell.innerHTML = '<img id="socks_cell" src="files/tshirt.png" width="256" height="256" border="0" alt="1r1">';
+		compute_cell.innerHTML = '<img id="socks_cell" src="files/tshirt.png" width="180" height="180" border="0" alt="1r1">';
 		AddWeight(0.11);
 	}
 	range_cell.style.cursor = "grabbing";
