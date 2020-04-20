@@ -12,8 +12,14 @@ var machineWidth;
 var machineHeight;
 var posX;
 var posY;
-
+var degre;
+var washingDrumX;
+var washingDrumY;
+var drumRadius;
+var drumDecor1;
+var drumDecor2;
 var isStarted = false;
+var drumDecor3;
 var washTimeStr = '00:00 min';
 
 var totalWeight = 0.00;
@@ -53,9 +59,9 @@ function DrawMachine() {
     posX = (svgFrame.clientWidth - machineWidth) / 2;
     posY = (svgFrame.clientHeight - machineHeight) / 2;
     DrawRoundedRect(posX, posY, machineWidth, machineHeight, 4, 2, '#8696a0', '#fff');
-    let washingDrumX = sizes.grW / 2;
-    let washingDrumY = svgFrame.clientHeight / 2 + (machineHeight / 5) / 3;
-    let drumRadius = (machineWidth / 2 + machineWidth / 7) / 2;
+    washingDrumX = sizes.grW / 2;
+    washingDrumY = svgFrame.clientHeight / 2 + (machineHeight / 5) / 3;
+    drumRadius = (machineWidth / 2 + machineWidth / 7) / 2;
     DrawLine(posX, posY + machineHeight / 5, posX + machineWidth, posY + machineHeight / 5, 2, '#8696a0');
 	DrawDrumDecor(washingDrumX, washingDrumY, drumRadius);
     DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, 'rgba(134, 150, 160, 0.555)', 2, "url(#linear-gradient)", 20, 'MachineDrum');
@@ -102,7 +108,26 @@ startButton.onclick = function () { // =========* MACHINE START *==========
 	ComputeWashingTime();
 	DrawWashTimeTable(posX, posY, machineWidth);
 	CountDown();
+	WashingProcess();
 	startButton.onclick = null;
+}
+
+function WashingProcess () {
+	drumDecor1 = document.getElementById('drum_decor_1');
+	drumDecor2 = document.getElementById('drum_decor_2');
+	drumDecor3 = document.getElementById('drum_decor_3');
+	RotateDrum();
+}
+
+function RotateDrum () {
+	var timerAnimation;
+	function AnimationDrum () {
+		timerAnimation = setInterval(DrumAnimate, 333);
+	}
+}
+
+function DrumAnimate () {
+	console.log('DrumAnimate');
 }
 
 var timerId;
