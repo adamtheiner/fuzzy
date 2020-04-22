@@ -65,9 +65,10 @@ function DrawMachine() {
     DrawLine(posX, posY + machineHeight / 5, posX + machineWidth, posY + machineHeight / 5, 2, '#8696a0', 0, 0, 0, 0);
 	DrawDrumDecor(washingDrumX, washingDrumY, drumRadius);
     DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, 'rgba(134, 150, 160, 0.555)', 2, "url(#linear-gradient)", 20, 'MachineDrum');
-	DrawCircle(washingDrumX, washingDrumY, drumRadius-drumRadius/3, 'rgba(255, 255, 255, 0.444)', 10, 'rgba(255,255,255,0.222)', 12, 'MachineDrumDecor');
+	//function DrawCircle (x, y, r, s, sw, c, rot, Id)
+	DrawCircle(washingDrumX, washingDrumY, drumRadius-drumRadius/3, 'rgba(255, 255, 255, 0.444)', 10, 'rgba(255,255,255,0.222)', 0, 'MachineDrumDecor');
 	DrawCircle(washingDrumX, washingDrumY, drumRadius, '#8696a0', 2, 'rgba(0, 184, 255, 0.01)', 0, 'outerCircle');
-	DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, 'rgba(255, 255, 255, 1)', drumRadius / 7, 'rgba(0, 0, 0, 0)', 0, 'outCircle');
+	DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, 'rgba(255, 255, 255, 1)', drumRadius / 5, 'rgba(0, 0, 0, 0)', 0, 'outCircle');
     DrawLine(
         washingDrumX + (drumRadius - drumRadius / 5),
         washingDrumY - drumRadius / 4,
@@ -127,11 +128,18 @@ function WashingProcess () {
 	timerDrumAnimate = setInterval(DrumTick, 50);
 }
 var rotCountDegre = 0;
+var speed = 7;
+var wearSpeed = Math.random() * 100;
 function DrumTick () {
 	rotCountDegre++;
-	drumDecor1.setAttribute('transform', 'rotate(' + rotCountDegre * 5 + ', ' + washingDrumX + ', ' + washingDrumY + ')');
-	drumDecor2.setAttribute('transform', 'rotate(' + (rotCountDegre * 5 + 120) + ', ' + washingDrumX + ', ' + washingDrumY + ')');
-	drumDecor3.setAttribute('transform', 'rotate(' + (rotCountDegre * 5 + 240) + ', ' + washingDrumX + ', ' + washingDrumY + ')');
+	drumDecor1.setAttribute('transform', 'rotate(' + rotCountDegre * speed + ', ' + washingDrumX + ', ' + washingDrumY + ')');
+	drumDecor2.setAttribute('transform', 'rotate(' + (rotCountDegre * speed + 120) + ', ' + washingDrumX + ', ' + washingDrumY + ')');
+	drumDecor3.setAttribute('transform', 'rotate(' + (rotCountDegre * speed + 240) + ', ' + washingDrumX + ', ' + washingDrumY + ')');
+	var wears = document.getElementsByClassName('beRotate');
+	for (var i = 0; i < wears.length; i++) {
+		//wears[i].setAttribute('transform', 'rotate(' + (Math.random() * 100) + ', '+washingDrumX + ', ' + washingDrumY +')');
+		wears[i].setAttribute('transform', 'rotate(' + (rotCountDegre * wearSpeed - (Math.random() * 10 - Math.random() * 10) * 50) + ', ' + washingDrumX + ', ' + washingDrumY + ')');
+	}
 	if (washingTime == 0) {
 		clearInterval(timerDrumAnimate);
 	}
