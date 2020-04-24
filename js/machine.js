@@ -199,23 +199,28 @@ var compute_cell = Wear[1];
 
 function WearSelection () {
 	//document.getElementsByTagName('th')[0].innerText = ' ';
-	if (this.id == 'socks_cell') {
-		compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="180" height="180" border="0" alt="1r1">';
-		AddWeight(0.02);
-	}
-	if (this.id == 'pants_cell') {
-		compute_cell.innerHTML = '<img id="socks_cell" src="files/pants.png" width="180" height="180" border="0" alt="1r1">';
-		AddWeight(0.33);
-	}
-	if (this.id == 'tshirt_cell') {
-		compute_cell.innerHTML = '<img id="socks_cell" src="files/tshirt.png" width="180" height="180" border="0" alt="1r1">';
-		AddWeight(0.11);
-	}
-	range_cell.style.cursor = "grabbing";
+//	if (this.id == 'socks_cell') {
+//		compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="180" height="180" border="0" alt="1r1">';
+//		AddWeight(0.02);
+//	}
+//	if (this.id == 'pants_cell') {
+//		compute_cell.innerHTML = '<img id="socks_cell" src="files/pants.png" width="180" height="180" border="0" alt="1r1">';
+//		AddWeight(0.33);
+//	}
+//	if (this.id == 'tshirt_cell') {
+//		compute_cell.innerHTML = '<img id="socks_cell" src="files/tshirt.png" width="180" height="180" border="0" alt="1r1">';
+//		AddWeight(0.11);
+//	}
+	
+	DragWear(event);
 }
 
-range_cell.onmousedown = function(event) {
-	var range_cell = document.getElementById('range_cell').firstChild;
+//  range_cell.onmousedown = DragWear(event);
+
+function DragWear (event) {
+	//var range_cell = document.getElementById('range_cell').firstChild;
+	var range_cell = event.explicitOriginalTarget.cloneNode(true);
+	range_cell.style.cursor = "grabbing";
 	range_cell.style.position = 'absolute';
 	range_cell.style.zIndex = 1000;
 	document.body.append(range_cell);
