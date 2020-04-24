@@ -13,6 +13,7 @@ var machineHeight;
 var posX;
 var posY;
 var degre;
+var wears;
 var washingDrumX;
 var washingDrumY;
 var drumRadius;
@@ -113,12 +114,11 @@ startButton.onclick = function () { // =========* MACHINE START *==========
 	startButton.onclick = null;
 }
 
-function DrumRotate () {
-	var DrumDecor = [drumDecor1, drumDecor2, drumDecor3]
-}
+//function DrumRotate () {
+//	var DrumDecor = [drumDecor1, drumDecor2, drumDecor3]
+//}
 
 
-//===================================
 
 var timerDrumAnimate;
 function WashingProcess () {
@@ -128,23 +128,23 @@ function WashingProcess () {
 	timerDrumAnimate = setInterval(DrumTick, 50);
 }
 var rotCountDegre = 0;
-var speed = 7;
+var speed = 10;    // drum rotate speed ============= drum rotate speed
 var wearSpeed = Math.random() * 100;
 function DrumTick () {
 	rotCountDegre++;
 	drumDecor1.setAttribute('transform', 'rotate(' + rotCountDegre * speed + ', ' + washingDrumX + ', ' + washingDrumY + ')');
 	drumDecor2.setAttribute('transform', 'rotate(' + (rotCountDegre * speed + 120) + ', ' + washingDrumX + ', ' + washingDrumY + ')');
 	drumDecor3.setAttribute('transform', 'rotate(' + (rotCountDegre * speed + 240) + ', ' + washingDrumX + ', ' + washingDrumY + ')');
-	var wears = document.getElementsByClassName('beRotate');
+	wears = document.getElementsByClassName('beRotate');
 	for (var i = 0; i < wears.length; i++) {
 		//wears[i].setAttribute('transform', 'rotate(' + (Math.random() * 100) + ', '+washingDrumX + ', ' + washingDrumY +')');
-		wears[i].setAttribute('transform', 'rotate(' + (rotCountDegre * wearSpeed - (Math.random() * 10 - Math.random() * 10) * 50) + ', ' + washingDrumX + ', ' + washingDrumY + ')');
+		wears[i].setAttribute('transform', 'rotate(' + (rotCountDegre * wearSpeed - (Math.random() * 10 - Math.random() * 10) * 15) + ', ' + washingDrumX + ', ' + washingDrumY + ')');
 	}
 	if (washingTime == 0) {
 		clearInterval(timerDrumAnimate);
 	}
 }
-//===================================
+
 
 var timerId;
 function CountDown () {
@@ -169,6 +169,12 @@ function TimerTick () {
 
 function WashingEnd () { // =========* MACHINE STOP *==========
 	startButton.setAttribute('fill', 'green');
+	let CleanLinen = wears;
+	for (var i = 0; i < CleanLinen.length; i++) {
+		CleanLinen[i].removeAttribute('transform');
+		
+		CleanLinen[i].setAttribute('transform', 'rotate(' + (45 + Math.random()*10) + ', ' + washingDrumX + ', ' + washingDrumY + ')');
+	}
 	var popup = document.createElement('div');
 	popup.setAttribute('class', 'alert alert-primary');
 	popup.setAttribute('role', 'alert');
@@ -286,7 +292,7 @@ function AddDirt () {
 	dSpan.innerText = totalDirt.toString().substr(0, 6);
 }
 
-function DrawWashTimeTable (posX, posY, scaledMachineSize) {
+function DrawWashTimeTable (posX, posY, scaledMachineSize) {// нужно добавить удаление предыдущих цифр, чтобы сократить расход памяти?
 	tablePosX = posX + scaledMachineSize / 2;
 	tablePosY = posY + scaledMachineSize / 21;
 	tableWidth = scaledMachineSize / 2 - scaledMachineSize / 21;
