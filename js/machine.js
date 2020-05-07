@@ -7,7 +7,7 @@ var dSpan = document.getElementById('totalDirtSpan');
 var gRangeInput = document.getElementById('greasyRangeInput');
 var dRangeInput = document.getElementById('dirtRangeInput');
 var Head = document.getElementById('contentHead');
-var sizes = ComputeSizes();
+var sizes = new ComputeSizes();
 var machineWidth;
 var machineHeight;
 var posX;
@@ -140,7 +140,7 @@ function DrumTick () {
 		//wears[i].setAttribute('transform', 'rotate(' + (Math.random() * 100) + ', '+washingDrumX + ', ' + washingDrumY +')');
 		wears[i].setAttribute('transform', 'rotate(' + (rotCountDegre * wearSpeed - (Math.random() * 10 - Math.random() * 10) * 15) + ', ' + washingDrumX + ', ' + washingDrumY + ')');
 	}
-	if (washingTime == 0) {
+	if (washingTime === 0) {
 		clearInterval(timerDrumAnimate);
 	}
 }
@@ -161,7 +161,7 @@ function TimerTick () {
 		minutes = washingTime;
 	}
 	DrawWashTimeTable(posX, posY, machineWidth);
-	if (washingTime == 0) {
+	if (washingTime === 0) {
 		clearInterval(timerId);
 		WashingEnd();
 	}
@@ -204,20 +204,25 @@ Wear[3].onclick =  WearSelection;
 var compute_cell = Wear[1];
 
 function WearSelection () {
-	//document.getElementsByTagName('th')[0].innerText = ' ';
-//	if (this.id == 'socks_cell') {
-//		compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="180" height="180" border="0" alt="1r1">';
-//		AddWeight(0.02);
-//	}
-//	if (this.id == 'pants_cell') {
-//		compute_cell.innerHTML = '<img id="socks_cell" src="files/pants.png" width="180" height="180" border="0" alt="1r1">';
-//		AddWeight(0.33);
-//	}
-//	if (this.id == 'tshirt_cell') {
-//		compute_cell.innerHTML = '<img id="socks_cell" src="files/tshirt.png" width="180" height="180" border="0" alt="1r1">';
-//		AddWeight(0.11);
-//	}
-	
+	if (totalWeight >= 5) {
+		Wear[0].onclick = null;
+		Wear[2].onclick = null;
+		Wear[3].onclick = null;
+		totalWeight = 5;
+	}
+	document.getElementsByTagName('th')[0].innerText = ' ';
+	if (this.id == 'socks_cell') {
+		//compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="180" height="180" border="0" alt="1r1">';
+		AddWeight(0.02);
+	}
+	if (this.id == 'pants_cell') {
+		//compute_cell.innerHTML = '<img id="socks_cell" src="files/pants.png" width="180" height="180" border="0" alt="1r1">';
+		AddWeight(0.33);
+	}
+	if (this.id == 'tshirt_cell') {
+		//compute_cell.innerHTML = '<img id="socks_cell" src="files/tshirt.png" width="180" height="180" border="0" alt="1r1">';
+		AddWeight(0.11);
+	}
 	DragWear(event);
 }
 
