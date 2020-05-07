@@ -51,9 +51,7 @@ Napríklad Wikipedia nám dáva dve Hebbove pravidlá:
 * **Prvé Hebbovo pravidlo** — Ak je signál perceptrónu nesprávny a je rovný nule, je potrebné zvýšiť hmotnosť tých vstupov, na ktoré sa jednotka použila.
 * **Druhé Hebbovo pravidlo** — Ak je signál perceptrónu nesprávny a rovná sa jednotke, je potrebné znížiť hmotnosť tých vstupov, na ktoré bola jednotka použitá.
 
-Правило Хебба основано на правиле, согласно которому 
-весовой вектор увеличивается пропорционально входному и обучающему (или выходному) сигналам.
-Веса увеличиваются путем добавления произведения ввода и вывода к старому весу:
+Hebbovo pravidlo je založené na pravidle, podľa ktorého sa váhový vektor zvyšuje úmerne so vstupnými a výcvikovými (alebo výstupnými) signálmi. Hmotnosti sa zvyšujú pridaním produktu vstupov a výstupov k starej hmotnosti:
 
 **W (nové) = w (staré) + x * y**
 
