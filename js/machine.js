@@ -80,7 +80,7 @@ function DrawMachine() {
 	);
 	let posStartButtonX = posX + machineWidth / 10;
 	let posStartButtonY = posY + machineWidth / 10;
-	let startButtonRadius = machineWidth / 20;
+	let startButtonRadius = machineWidth / 16;
 	DrawStartButton(isStarted, posStartButtonX, posStartButtonY, startButtonRadius);
 	DrawWashTimeTable(posX, posY, machineWidth);
 }
@@ -106,6 +106,7 @@ function DrawStartButton (isStarted, posX, posY, radius) {
 var startButton = document.getElementById('startButton');
 
 startButton.onclick = function () { // =========* MACHINE START *==========
+	GetWearsPosition();
 	startButton.setAttribute('fill', 'red');
 	ComputeWashingTime();
 	DrawWashTimeTable(posX, posY, machineWidth);
@@ -113,12 +114,6 @@ startButton.onclick = function () { // =========* MACHINE START *==========
 	WashingProcess();
 	startButton.onclick = null;
 }
-
-//function DrumRotate () {
-//	var DrumDecor = [drumDecor1, drumDecor2, drumDecor3]
-//}
-
-
 
 var timerDrumAnimate;
 function WashingProcess () {
@@ -128,7 +123,7 @@ function WashingProcess () {
 	timerDrumAnimate = setInterval(DrumTick, 50);
 }
 var rotCountDegre = 0;
-var speed = 10;    // drum rotate speed ============= drum rotate speed
+var speed = 15;    // drum rotate speed ============= drum rotate speed
 var wearSpeed = Math.random() * 100;
 function DrumTick () {
 	rotCountDegre++;
@@ -151,7 +146,7 @@ function CountDown () {
 	timerId = setInterval(TimerTick, 1000);
 }
 
-function TimerTick () {
+function TimerTick () {//===============2hoursCompute!!!
 	washingTime -= 1;
 	if (washingTime >= 60) {
 	hours = 1;
@@ -169,12 +164,7 @@ function TimerTick () {
 
 function WashingEnd () { // =========* MACHINE STOP *==========
 	startButton.setAttribute('fill', 'green');
-	let CleanLinen = wears;
-	for (var i = 0; i < CleanLinen.length; i++) {
-		CleanLinen[i].removeAttribute('transform');
-		
-		CleanLinen[i].setAttribute('transform', 'rotate(' + (45 + Math.random()*10) + ', ' + washingDrumX + ', ' + washingDrumY + ')');
-	}
+	SetWearsStartPosition();
 	var popup = document.createElement('div');
 	popup.setAttribute('class', 'alert alert-primary');
 	popup.setAttribute('role', 'alert');
@@ -185,7 +175,7 @@ function WashingEnd () { // =========* MACHINE STOP *==========
 function ComputeWashingTime () {
 	washingTime = washingTime * totalGreasy;
 	washingTime = washingTime * totalDirt;
-	washingTime += 21;
+	washingTime += 1;//============================temp!!! change 1 to 21 ============
 	washingTime = washingTime.toFixed();
 	if (washingTime >= 60) {
 		hours = 1;
@@ -304,4 +294,12 @@ function DrawWashTimeTable (posX, posY, scaledMachineSize) {// нужно доб
 	tableHeight = scaledMachineSize / 7;
 	DrawRoundedRect (tablePosX, tablePosY, tableWidth, tableHeight, 4, 2, machineColor, 'rgba(0, 0, 0, 0.777)');
 	DrawHours(hours, minutes);
+}
+
+function GetWearsPosition () {
+
+}
+
+function SetWearsStartPosition () {
+
 }
