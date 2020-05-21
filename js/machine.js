@@ -66,11 +66,11 @@ function DrawMachine() {
     DrawLine(posX, posY + machineHeight / 5, posX + machineWidth, posY + machineHeight / 5, 2, '#8696a0', 0, 0, 0, 0);
 	DrawDrumDecor(washingDrumX, washingDrumY, drumRadius);
     DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, 'rgba(134, 150, 160, 0.555)', 2, "url(#linear-gradient)", 20, 'MachineDrum');
-	//function DrawCircle (x, y, r, s, sw, c, rot, Id)
+	//function DrawCircle (x, y, r, s, sw, c, rot, Id) example
 	DrawCircle(washingDrumX, washingDrumY, drumRadius-drumRadius/3, 'rgba(255, 255, 255, 0.444)', 10, 'rgba(255,255,255,0.222)', 0, 'MachineDrumDecor');
 	DrawCircle(washingDrumX, washingDrumY, drumRadius, '#8696a0', 2, 'rgba(0, 184, 255, 0.01)', 0, 'outerCircle');
 	DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, 'rgba(255, 255, 255, 1)', drumRadius / 5, 'rgba(0, 0, 0, 0)', 0, 'outCircle');
-    DrawLine(
+    DrawLine(//ручка дверцы
         washingDrumX + (drumRadius - drumRadius / 5),
         washingDrumY - drumRadius / 4,
         washingDrumX + (drumRadius - drumRadius / 5),
@@ -78,8 +78,8 @@ function DrawMachine() {
         drumRadius / 10,
         '#8696a0', 0, 0, 0, 0
 	);
-	let posStartButtonX = posX + machineWidth / 10;
-	let posStartButtonY = posY + machineWidth / 10;
+	let posStartButtonX = posX + machineWidth / 8;
+	let posStartButtonY = posY + machineWidth / 8;
 	let startButtonRadius = machineWidth / 16;
 	DrawStartButton(isStarted, posStartButtonX, posStartButtonY, startButtonRadius);
 	DrawWashTimeTable(posX, posY, machineWidth);
@@ -107,6 +107,7 @@ var startButton = document.getElementById('startButton');
 
 startButton.onclick = function () { // =========* MACHINE START *==========
 	GetWearsPosition();
+	AddWater(totalWeight);
 	startButton.setAttribute('fill', 'red');
 	ComputeWashingTime();
 	DrawWashTimeTable(posX, posY, machineWidth);
@@ -123,7 +124,7 @@ function WashingProcess () {
 	timerDrumAnimate = setInterval(DrumTick, 50);
 }
 var rotCountDegre = 0;
-var speed = 15;    // drum rotate speed ============= drum rotate speed
+var speed = 21;    // drum rotate speed ============= drum rotate speed
 var wearSpeed = Math.random() * 100;
 function DrumTick () {
 	rotCountDegre++;
@@ -168,7 +169,7 @@ function WashingEnd () { // =========* MACHINE STOP *==========
 	var popup = document.createElement('div');
 	popup.setAttribute('class', 'alert alert-primary');
 	popup.setAttribute('role', 'alert');
-	popup.innerHTML = '<h1>Washing is finished</h1>';
+	popup.innerHTML = '<h1>Washing is finished</h1><button type="button" class="btn btn-light" onclick="ResetMachine()">Resetujte stroj</button>';
 	Head.appendChild(popup);
 }
 
@@ -302,4 +303,12 @@ function GetWearsPosition () {
 
 function SetWearsStartPosition () {
 
+}
+
+function ResetMachine () {
+	document.location.reload(true);
+}
+
+function AddWater (totalWeight) {
+	
 }
