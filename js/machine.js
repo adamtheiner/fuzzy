@@ -220,6 +220,7 @@ function WearSelection () {
 //  range_cell.onmousedown = DragWear(event);
 
 function DragWear (event) {
+	console.log(event.explicitOriginalTarget); //=============================== temp
 	//var range_cell = document.getElementById('range_cell').firstChild;
 	var range_cell = event.explicitOriginalTarget.cloneNode(true);
 	range_cell.style.cursor = "grabbing";
