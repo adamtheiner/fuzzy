@@ -25,7 +25,7 @@
 							<div id="" class="btn-group" role="group"  aria-label="Button group">
 								<a id="btn_Linear" class="btn btn-secondary" href="#" role="button">Lineárny</a>
 								<a id="btn_Nonlinear" class="btn" href="#" role="button">Nelineárny</a>
-								<a id="btn_ImprovedAlgorithm" class="btn" href="#" role="button">Zdokonalený lineárny</a>
+								<a id="btn_ImprovedAlgorithm" class="btn" href="#" role="button">Zdokonalený nelineárny</a>
 							</div>
 						</div>
 					</nav>
@@ -42,16 +42,16 @@
 									<div class="form-group">
 										<label for="greasy_OptionSelect">Stupeň mastnoty</label>
 										<select id="greasy_OptionSelect" class="custom-select">
-											<option value="Not Greasy">Nemastné</option>
-											<option value="Medium">Stredne mastné</option>
-											<option value="Greasy">Mastné</option>
+											<option value="Nemastné">Nemastné</option>
+											<option value="Stredne mastné">Stredne mastné</option>
+											<option value="Mastné">Mastné</option>
 										</select>
 										<small id="weight_OptionHelp" class="form-text text-muted">Prosím zvoľte stupeň mastnoty</small>
 										<label for="dirt_QualitySelect">Stupeň  znečistenia</label>
 										<select id="dirt_QualitySelect" class="custom-select">
-											<option value="Small">Slabo znečistené</option>
-											<option value="Medium">Stredne znečistené</option>
-											<option value="Large">Silno znečistené</option>
+											<option value="Slabo znečistené">Slabo znečistené</option>
+											<option value="Stredne znečistené">Stredne znečistené</option>
+											<option value="Silno znečistené">Silno znečistené</option>
 										</select>
 										<small id="dirt_QualityHelp" class="form-text text-muted">Prosím zvoľte stupeň znečistenia</small>
 										<label for="wash_Weight">Hmotnosť bielizne</label>
@@ -64,8 +64,9 @@
 									<div class="form-group">
 										<!--  -->
 									</div>
-									<input type="button" class="btn btn-primary" id="reset" value="Reset">
-									<input type="button" class="btn btn-success" id="compute" value="Compute">
+									<input type="button" class="btn btn-primary" id="reset" value="Resetujte stroj">
+									<input type="button" class="btn btn-success" id="compute" value="Vypočítavať
+">
 								</form>
 							</div>
 						</div>
@@ -82,15 +83,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- <div id="" class="container">
-				<div id="" class="jumbotron jumbotron-fluid">
-					<div id="" class="row">
-						<div id="drawing" class="col">
-							
-						</div>
-					</div>
-				</div>
-			</div> -->
 		</div>
 		<script src="js/jquery-3.4.1.slim.min.js" crossorigin="anonymous"></script>
 		<script src="js/popper.min.js" crossorigin="anonymous"></script>
