@@ -310,5 +310,5 @@ function ResetMachine () {
 }
 
 function AddWater (totalWeight) {
-	
+	console.log('AddWater message');
 }
