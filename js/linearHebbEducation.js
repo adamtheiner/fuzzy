@@ -5,7 +5,7 @@ function ComputeWater () {
 }
 
 function ConmputeLinearTimeWash () {
-	let wash_time = ["Very Short (20 min.)", "Short (30 min.)", "Medium (40 min.)", "Long (50 min.)", "Very Long (60 min.)"];
+	let wash_time = ["Veľmi rýchlo (20 min.)", "Rýchlo (30 min.)", "Normálny čas (40 min.)", "Dlho (50 min.)", "Veľmi dlho (60 min.)"];
 
 	let VeryShort = 
 		greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Nemastné" &&
