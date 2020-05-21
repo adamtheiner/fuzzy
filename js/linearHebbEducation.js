@@ -1,35 +1,35 @@
 'use strict';
 function ComputeWater () {
 	let water = parseFloat(wash_WeightRange.value, 10) * 1.23 + 2.2;
-	water_result_span.innerText = water.toString().substring(0, 4) + ' liters';
+	water_result_span.innerText = water.toString().substring(0, 4) + ' litre';
 }
 
 function ConmputeLinearTimeWash () {
 	let wash_time = ["Very Short (20 min.)", "Short (30 min.)", "Medium (40 min.)", "Long (50 min.)", "Very Long (60 min.)"];
 
 	let VeryShort = 
-		greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Not Greasy" &&
-		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Small";
+		greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Nemastné" &&
+		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Slabo znečistené";
 	let Short =
-		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Medium" &&
-		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Small") ||
-		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Not Greasy" &&
-		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Medium");
+		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Stredne mastné" &&
+		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Slabo znečistené") ||
+		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Nemastné" &&
+		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Stredne znečistené");
 	let Medium =
-		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Medium" &&
-		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Medium") ||
-		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Not Greasy" &&
-		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Large") ||
-		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Greasy" &&
-		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Small");
+		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Stredne mastné" &&
+		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Stredne znečistené") ||
+		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Nemastné" &&
+		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Silno znečistené") ||
+		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Mastné" &&
+		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Slabo znečistené");
 	let Long =
-		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Greasy" &&
-		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Medium") ||
-		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Medium" &&
-		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Large") ;
+		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Mastné" &&
+		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Stredne znečistené") ||
+		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Stredne mastné" &&
+		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Silno znečistené") ;
 	let VeryLong =
-		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Greasy" &&
-		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Large");
+		(greasy_OptionSelect.options[greasy_OptionSelect.selectedIndex].value == "Mastné" &&
+		dirt_QualitySelect.options[dirt_QualitySelect.selectedIndex].value == "Silno znečistené");
 
 
 	if (VeryShort) {time_result_span.innerText = wash_time[0];}
