@@ -220,12 +220,11 @@ function WearSelection () {
 //  range_cell.onmousedown = DragWear(event);
 
 function DragWear (event) {
-	console.log(event.explicitOriginalTarget); //=============================== temp
-	//var range_cell = document.getElementById('range_cell').firstChild;
-	var range_cell = event.explicitOriginalTarget.cloneNode(true);
+	let e = event.explicitOriginalTarget || event.target;
+	let range_cell = e.cloneNode(true);
 	range_cell.style.cursor = "grabbing";
 	range_cell.style.position = 'absolute';
-	range_cell.style.zIndex = 1000;
+	range_cell.style.zIndex = 1111;
 	document.body.append(range_cell);
 
 	moveAt(event.pageX, event.pageY);
@@ -311,5 +310,5 @@ function ResetMachine () {
 }
 
 function AddWater (totalWeight) {
-	console.log('AddWater message');
+	
 }
