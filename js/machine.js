@@ -10,6 +10,8 @@ var Head = document.getElementById('contentHead');
 var sizes = new ComputeSizes();
 var machineWidth;
 var machineHeight;
+var mask;
+var maskRect;
 var posX;
 var posY;
 var degre;
@@ -19,8 +21,8 @@ var washingDrumY;
 var drumRadius;
 var drumDecor1;
 var drumDecor2;
-var isStarted = false;
 var drumDecor3;
+var isStarted = false;
 var washTimeStr = '00:00 min';
 
 var totalWeight = 0.00;
@@ -59,10 +61,32 @@ function DrawMachine() {
     }
     posX = (svgFrame.clientWidth - machineWidth) / 2;
     posY = (svgFrame.clientHeight - machineHeight) / 2;
-    DrawRoundedRect(posX, posY, machineWidth, machineHeight, 4, 2, '#8696a0', '#fff');
+    
     washingDrumX = sizes.grW / 2;
     washingDrumY = svgFrame.clientHeight / 2 + (machineHeight / 5) / 3;
     drumRadius = (machineWidth / 2 + machineWidth / 7) / 2;
+
+//===============================================================
+//========================= water mask ==========================
+
+	var defs = document.createElementNS(ns, 'defs');
+	svg.appendChild(defs);
+
+	mask = document.createElementNS(ns, 'mask');
+	mask.setAttributeNS(null, 'id', "Mask");
+	defs.appendChild(mask);
+	
+	maskRect = document.createElementNS(ns, 'rect');
+	maskRect.setAttributeNS(null, 'x', washingDrumX - drumRadius);
+	maskRect.setAttributeNS(null, 'y', washingDrumY + drumRadius);
+	maskRect.setAttributeNS(null, 'width', drumRadius*2);
+	maskRect.setAttributeNS(null, 'height', drumRadius*2);
+	maskRect.setAttributeNS(null, 'fill', "#0ff");
+	mask.appendChild(maskRect);
+
+//================================================================
+
+    DrawRoundedRect(posX, posY, machineWidth, machineHeight, 4, 2, '#8696a0', '#fff');
     DrawLine(posX, posY + machineHeight / 5, posX + machineWidth, posY + machineHeight / 5, 2, '#8696a0', 0, 0, 0, 0);
 	DrawDrumDecor(washingDrumX, washingDrumY, drumRadius);
     DrawCircle(washingDrumX, washingDrumY, drumRadius - drumRadius / 5, 'rgba(134, 150, 160, 0.555)', 2, "url(#linear-gradient)", 20, 'MachineDrum');
@@ -310,5 +334,36 @@ function ResetMachine () {
 }
 
 function AddWater (totalWeight) {
-	
+	let outCircle = document.getElementById('outCircle');
+
+	let circle = document.createElementNS(ns, 'circle');
+	circle.setAttributeNS(null, 'cx', washingDrumX);
+	circle.setAttributeNS(null, 'cy', washingDrumY);
+	circle.setAttributeNS(null, 'r', drumRadius - drumRadius/4);
+	circle.setAttributeNS(null, 'fill', "rgba(200,222,255,.5)");
+	circle.setAttributeNS(null, 'stroke', "rgba(200,222,255,.5)");
+	circle.setAttributeNS(null, 'stroke-width', 0);
+	circle.setAttributeNS(null, 'id', "water");
+	circle.setAttributeNS(null, 'mask', "url(#Mask)");
+	svg.insertBefore(circle, outCircle);
+
+	intervalWater = setInterval(waterAdd, 333, totalWeight);
+}
+var stepCount = 0;
+function waterAdd (totalWeight) {
+	var stepSize, allWaterSize;
+	allWaterSize = drumRadius - drumRadius / 4;
+	stepSize = allWaterSize / 10;
+	stepCount++;
+	if (stepCount==10) {
+		clearInterval(intervalWater);
+	}
+	ShiftMask(stepSize);
+	console.log(stepCount);
+}
+
+var intervalWater;
+
+function ShiftMask(stepSize) {
+	console.log(stepSize);
 }
