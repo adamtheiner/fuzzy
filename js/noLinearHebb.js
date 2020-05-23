@@ -23,7 +23,7 @@ function ConmputeNoLinear() {
 	}
 
 	function ViewResult () {
-		let result_string_variant = ["Very Short ", "Short ", "Medium ", "Long ", "Very Long "];
+		let result_string_variant = ["Veľmi krátky ", "Krátky ", "Stredný ", "Dlhý ", "Veľmi dlhý "];
 		let result_string = ((Wout * 1000) + minWashTime).toString().substring(0, 4);
 		let result_string_concat = "";
 
@@ -43,6 +43,6 @@ function ConmputeNoLinear() {
 			result_string_concat = result_string_variant[4] + result_string;
 		}
 
-		setTimeout(() => time_result_span.innerText = result_string_concat + ' minutes', 555);
+		setTimeout(() => time_result_span.innerText = result_string_concat + ' minút', 555);
 	}
 }
