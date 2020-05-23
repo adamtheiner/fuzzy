@@ -116,10 +116,10 @@ function SpansUpdate () {
 	InputWeightRange();
 	quality_option_span.innerText = 
 		((parseFloat(dirt_range.value))*100)
-			.toString().substring(0, 4) + " % dirt";
+			.toString().substring(0, 4) + " % znečistenie";
 	greasy_option_span.innerText = 
 		((parseFloat(greasy_range.value))*100)
-			.toString().substring(0, 4) + " % greasy";
+			.toString().substring(0, 4) + " % mastnota";
 }
 
 function Compute () {
