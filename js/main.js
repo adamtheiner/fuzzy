@@ -27,7 +27,7 @@ greasy_range.setAttribute('id', 'greasy_range_input');
 greasy_range.oninput = function () {
 	greasy_option_span.innerText = 
 		((parseFloat(greasy_range.value))*100)
-			.toString().substring(0, 4) + " % greasy";
+			.toString().substring(0, 4) + " % mastnota";
 }
 
 var dirt_range = document.createElement('input');
@@ -41,7 +41,7 @@ dirt_range.setAttribute('id', 'dirt_range_input');
 dirt_range.oninput = function () {
 	quality_option_span.innerText = 
 		((parseFloat(dirt_range.value))*100)
-			.toString().substring(0, 4) + " % dirt";
+			.toString().substring(0, 4) + " % znečistenie";
 }
 
 var compute_method = 0;
