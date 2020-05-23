@@ -1,7 +1,7 @@
 'use strict';
 function ComputeWater () {
 	let water = parseFloat(wash_WeightRange.value, 10) * 1.23 + 2.2;
-	water_result_span.innerText = water.toString().substring(0, 4) + ' litre';
+	water_result_span.innerText = water.toString().substring(0, 4) + ' l';
 }
 
 function ConmputeLinearTimeWash () {
