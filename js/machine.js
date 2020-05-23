@@ -228,15 +228,15 @@ function WearSelection () {
 	document.getElementsByTagName('th')[0].innerText = ' ';
 	if (this.id == 'socks_cell') {
 		//compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="180" height="180" border="0" alt="1r1">';
-		AddWeight(0.02);
+		AddWeight(0.10);
 	}
 	if (this.id == 'pants_cell') {
 		//compute_cell.innerHTML = '<img id="socks_cell" src="files/pants.png" width="180" height="180" border="0" alt="1r1">';
-		AddWeight(0.33);
+		AddWeight(0.90);
 	}
 	if (this.id == 'tshirt_cell') {
 		//compute_cell.innerHTML = '<img id="socks_cell" src="files/tshirt.png" width="180" height="180" border="0" alt="1r1">';
-		AddWeight(0.11);
+		AddWeight(0.25);
 	}
 	DragWear(event);
 }
