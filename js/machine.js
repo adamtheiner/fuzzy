@@ -29,7 +29,7 @@ var totalWeight = 0.00;
 var totalGreasy = 0.15;
 var totalDirt = 0.15;
 
-var washingTime = 135;
+var washingTime = 90;
 var hours = 0;
 var minutes = 0;
 
@@ -66,9 +66,6 @@ function DrawMachine() {
     washingDrumY = svgFrame.clientHeight / 2 + (machineHeight / 5) / 3;
     drumRadius = (machineWidth / 2 + machineWidth / 7) / 2;
 
-//===============================================================
-//========================= water mask ==========================
-
 	var defs = document.createElementNS(ns, 'defs');
 	svg.appendChild(defs);
 
@@ -83,8 +80,6 @@ function DrawMachine() {
 	maskRect.setAttributeNS(null, 'height', drumRadius*2);
 	maskRect.setAttributeNS(null, 'fill', "#0ff");
 	mask.appendChild(maskRect);
-
-//================================================================
 
     DrawRoundedRect(posX, posY, machineWidth, machineHeight, 4, 2, '#8696a0', '#fff');
     DrawLine(posX, posY + machineHeight / 5, posX + machineWidth, posY + machineHeight / 5, 2, '#8696a0', 0, 0, 0, 0);
@@ -201,7 +196,7 @@ function WashingEnd () { // =========* MACHINE STOP *==========
 function ComputeWashingTime () {
 	washingTime = washingTime * totalGreasy;
 	washingTime = washingTime * totalDirt;
-	washingTime += 21;//============================temp!!! change 1 to 21 ============
+	washingTime += 12;//============================temp!!! change 1 to 21(12?) ============
 	washingTime = washingTime.toFixed();
 	if (washingTime >= 60) {
 		hours = 1;
@@ -365,7 +360,6 @@ var stepSize;
 
 function ShiftMask(stepSize) {
 	maskRect.setAttribute('y', maskRect.getAttribute('y')-stepSize);
-	console.log(maskRect.getAttribute('y'));
 }
 
 function DrainWater () {
