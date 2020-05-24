@@ -190,6 +190,7 @@ function TimerTick () {//===============2hoursCompute!!!
 function WashingEnd () { // =========* MACHINE STOP *==========
 	startButton.setAttribute('fill', 'green');
 	SetWearsStartPosition();
+	DrainWater();
 	var popup = document.createElement('div');
 	popup.setAttribute('class', 'alert alert-primary');
 	popup.setAttribute('role', 'alert');
@@ -200,7 +201,7 @@ function WashingEnd () { // =========* MACHINE STOP *==========
 function ComputeWashingTime () {
 	washingTime = washingTime * totalGreasy;
 	washingTime = washingTime * totalDirt;
-	washingTime += 1;//============================temp!!! change 1 to 21 ============
+	washingTime += 21;//============================temp!!! change 1 to 21 ============
 	washingTime = washingTime.toFixed();
 	if (washingTime >= 60) {
 		hours = 1;
@@ -228,15 +229,15 @@ function WearSelection () {
 	document.getElementsByTagName('th')[0].innerText = ' ';
 	if (this.id == 'socks_cell') {
 		//compute_cell.innerHTML = '<img id="socks_cell" src="files/socks.png" width="180" height="180" border="0" alt="1r1">';
-		AddWeight(0.10);
+		AddWeight(0.02);
 	}
 	if (this.id == 'pants_cell') {
 		//compute_cell.innerHTML = '<img id="socks_cell" src="files/pants.png" width="180" height="180" border="0" alt="1r1">';
-		AddWeight(0.90);
+		AddWeight(0.33);
 	}
 	if (this.id == 'tshirt_cell') {
 		//compute_cell.innerHTML = '<img id="socks_cell" src="files/tshirt.png" width="180" height="180" border="0" alt="1r1">';
-		AddWeight(0.25);
+		AddWeight(0.11);
 	}
 	DragWear(event);
 }
@@ -335,7 +336,6 @@ function ResetMachine () {
 
 function AddWater (totalWeight) {
 	let outCircle = document.getElementById('outCircle');
-
 	let circle = document.createElementNS(ns, 'circle');
 	circle.setAttributeNS(null, 'cx', washingDrumX);
 	circle.setAttributeNS(null, 'cy', washingDrumY);
@@ -346,24 +346,30 @@ function AddWater (totalWeight) {
 	circle.setAttributeNS(null, 'id', "water");
 	circle.setAttributeNS(null, 'mask', "url(#Mask)");
 	svg.insertBefore(circle, outCircle);
-
-	intervalWater = setInterval(waterAdd, 333, totalWeight);
+	intervalWater = setInterval(waterAdd, 123, totalWeight);
 }
 var stepCount = 0;
 function waterAdd (totalWeight) {
-	var stepSize, allWaterSize;
-	allWaterSize = drumRadius - drumRadius / 4;
+	var allWaterSize;
+	allWaterSize = (drumRadius / 2) + (drumRadius * ((totalWeight * 2) / 10));
 	stepSize = allWaterSize / 10;
 	stepCount++;
 	if (stepCount==10) {
 		clearInterval(intervalWater);
 	}
 	ShiftMask(stepSize);
-	console.log(stepCount);
 }
 
 var intervalWater;
+var stepSize;
 
 function ShiftMask(stepSize) {
-	console.log(stepSize);
+	maskRect.setAttribute('y', maskRect.getAttribute('y')-stepSize);
+	console.log(maskRect.getAttribute('y'));
+}
+
+function DrainWater () {
+	for (var i = 0; i < 10; i++) {
+		ShiftMask(-stepSize);
+	}
 }
