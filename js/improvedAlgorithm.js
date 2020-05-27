@@ -21,8 +21,9 @@ function ComputeImprovedAlgorithm () {
 		Wout = Wtmp;
 		greasy_init = (greasy_init + greasy_out) / 2;
 		dirt_init = (dirt_init + dirt_out) / 2;
-		ViewResult();
 	}
+	Wout = Math.abs(Wout);
+	ViewResult();
 	function ViewResult () {
 		let result_string_variant = ["Veľmi krátky ", "Krátky ", "Stredný ", "Dlhý ", "Veľmi dlhý "];
 		let result_string = ((Wout * 1000) + minWashTime).toString().substring(0, 4);
