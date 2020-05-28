@@ -5,25 +5,30 @@ function ComputeImprovedAlgorithm () { // učenie (100 iterácii/krokov)
 	let quotient = 0.07;
 	let greasy_init = Math.random();
 	let dirt_init = Math.random();
+	let weight_init = Math.random() * 5;
 	//let strengths = 0.111;
-	let iteration = 3;
+	let iteration = 100;
 	let Wtmp = 0.0;
 	let Wout = 0.0;
 	let minWashTime = 21; 
 
 	let greasy_out = parseFloat(greasy_range.value.substring(0, 4));
 	let dirt_out = parseFloat(dirt_range.value.substring(0, 4));
+    	let weight_out = parseFloat(wash_WeightRange.value.substring(0, 4));
 
 	Wout = quotient * greasy_init * dirt_init;
 
 	for (var i = 0; i < iteration; i++) {
-		Wtmp = quotient * ((2 * (greasy_init + quotient * 1.4)) ) * (dirt_init + quotient * 2);
+		Wtmp = quotient * (( (greasy_init + quotient * 1.4)) ) * (dirt_init + quotient * 2) * (weight_init * 0.25);
 		Wout = Wtmp;
 		greasy_init = (greasy_init + greasy_out) / 2;
 		dirt_init = (dirt_init + dirt_out) / 2;
+	   	weight_init = (weight_init + weight_out) / 2;
 	}
 	Wout = Math.abs(Wout);
+	
 	ViewResult();
+	
 	function ViewResult () { //  výpočet času prania
 		let result_string_variant = ["Veľmi krátky ", "Krátky ", "Stredný ", "Dlhý ", "Veľmi dlhý "];
 		let result_string = ((Wout * 1000) + minWashTime).toString().substring(0, 4);
