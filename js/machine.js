@@ -124,14 +124,14 @@ function DrawStartButton (isStarted, posX, posY, radius) {
 
 var startButton = document.getElementById('startButton');
 
-startButton.onclick = function () { // =========* MACHINE START *==========
-	GetWearsPosition();
-	AddWater(totalWeight);
-	startButton.setAttribute('fill', 'red');
-	ComputeWashingTime();
-	DrawWashTimeTable(posX, posY, machineWidth);
-	CountDown();
-	WashingProcess();
+startButton.onclick = function () { 			// Spustenie prania
+	GetWearsPosition();				// Pozícia bielizne
+	AddWater(totalWeight);				// Napúšťanie vody
+	startButton.setAttribute('fill', 'red');	// Zmena farby tlačidla
+	ComputeWashingTime();				// Výpočet času prania
+	DrawWashTimeTable(posX, posY, machineWidth);	// Vykreslenie displeja práčky
+	CountDown();					// Odpočet času prania
+	WashingProcess();				// Simulácia prania (krútiaci sa bubon)
 	startButton.onclick = null;
 }
 
