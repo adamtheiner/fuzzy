@@ -6,7 +6,7 @@ function ComputeImprovedAlgorithm () { // učenie (100 iterácii/krokov)
 	let greasy_init = Math.random();
 	let dirt_init = Math.random();
 	//let strengths = 0.111;
-	let iteration = 100;
+	let iteration = 50;
 	let Wtmp = 0.0;
 	let Wout = 0.0;
 	let minWashTime = 21; 
