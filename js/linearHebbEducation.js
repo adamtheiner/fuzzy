@@ -1,10 +1,10 @@
 'use strict';
-function ComputeWater () {
+function ComputeWater () {     // Výpočet množstva spotrebovanej vody
 	let water = parseFloat(wash_WeightRange.value, 10) * 1.23 + 2.2;
 	water_result_span.innerText = water.toString().substring(0, 4) + ' l';
 }
 
-function ConmputeLinearTimeWash () {
+function ConmputeLinearTimeWash () {    // Výpočet ćasu prania (Lineárna metóda)
 	let wash_time = ["Veľmi krátky (20 min.)", "Krátky (30 min.)", "Stredný (40 min.)", "Dlhý (50 min.)", "Veľmi dlhý (60 min.)"];
 
 	let VeryShort = 
