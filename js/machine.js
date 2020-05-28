@@ -308,7 +308,7 @@ function AddDirt () {
 	dSpan.innerText = totalDirt.toString().substr(0, 6);
 }
 
-function DrawWashTimeTable (posX, posY, scaledMachineSize) {// нужно добавить удаление предыдущих цифр, чтобы сократить расход памяти?
+function DrawWashTimeTable (posX, posY, scaledMachineSize) {
 	tablePosX = posX + scaledMachineSize / 2;
 	tablePosY = posY + scaledMachineSize / 21;
 	tableWidth = scaledMachineSize / 2 - scaledMachineSize / 21;
