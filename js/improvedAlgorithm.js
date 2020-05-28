@@ -17,7 +17,7 @@ function ComputeImprovedAlgorithm () { // učenie (100 iterácii/krokov)
 	Wout = quotient * greasy_init * dirt_init;
 
 	for (var i = 0; i < iteration; i++) {
-		Wtmp = quotient * ((1.5 * (greasy_init + quotient * 2)) ) * (dirt_init + quotient * 2);
+		Wtmp = quotient * ((1.2 * (greasy_init + quotient * 2)) ) * (dirt_init + quotient * 2);
 		Wout = Wtmp;
 		greasy_init = (greasy_init + greasy_out) / 2;
 		dirt_init = (dirt_init + dirt_out) / 2;
