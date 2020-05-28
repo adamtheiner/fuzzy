@@ -1,6 +1,6 @@
 'use strict';
 
-function ComputeImprovedAlgorithm () {
+function ComputeImprovedAlgorithm () { // učenie (100 iterácii/krokov)
 
 	let quotient = 0.07;
 	let greasy_init = Math.random();
@@ -24,7 +24,7 @@ function ComputeImprovedAlgorithm () {
 	}
 	Wout = Math.abs(Wout);
 	ViewResult();
-	function ViewResult () {
+	function ViewResult () { //  výpočet času prania
 		let result_string_variant = ["Veľmi krátky ", "Krátky ", "Stredný ", "Dlhý ", "Veľmi dlhý "];
 		let result_string = ((Wout * 1000) + minWashTime).toString().substring(0, 4);
 		let result_string_concat = "";
