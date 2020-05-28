@@ -1,5 +1,5 @@
 'use strict';
-function ConmputeNoLinear() {
+function ConmputeNoLinear() {   // učenie 
 	var quotient = 0.07;
 	var greasy_init = Math.random();
 	var dirt_init = Math.random();
@@ -22,7 +22,7 @@ function ConmputeNoLinear() {
 		ViewResult();
 	}
 
-	function ViewResult () {
+	function ViewResult () {  // výpočet času prania
 		let result_string_variant = ["Veľmi krátky ", "Krátky ", "Stredný ", "Dlhý ", "Veľmi dlhý "];
 		let result_string = ((Wout * 1000) + minWashTime).toString().substring(0, 4);
 		let result_string_concat = "";
