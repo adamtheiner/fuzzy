@@ -42,10 +42,10 @@ var machineColor = '#8696a0';
 var cipherColor = '#0ff';
 
 ///
-/* рисует КРУГ с параметрами:
-x - координата, У - координата,
-r - радиус, с - цвет
-(строка типа '#777' или '#7f7f7c')*/
+/* vykreslenie kruhu s súradnicami:
+x - súradnica, У - súradnica,
+r - polomer, с - farba
+('#777' alebo '#7f7f7c')*/
 ///
 function DrawCircle (x, y, r, s, sw, c, rot, Id) {
 	let circle = document.createElementNS(ns, 'circle');
@@ -61,10 +61,10 @@ function DrawCircle (x, y, r, s, sw, c, rot, Id) {
 	svg.appendChild(circle);
 }
 
-/* рисует ПРЯМУЮ ЛИНИЮ с параметрами: 
-x1 - координата начала, У1 - координата начала,
-x2 - координата конца, У2 - координата конца,
-th - толщина, с - цвет (строка типа '#777' или '#7f7f7c')*/
+/* vykreslenie priamej čiary s parametrami: 
+x1 - súradnica začiatku, У1 - súradnica začiatku,
+x2 - súradnica konca, У2 - súradnica konca,
+th - hrúbka, с - farba ('#777' alebo '#7f7f7c')*/
 function DrawLine (x1, y1, x2, y2, stroke_width, stroke_color, stroke_linecap, stroke_blur, Id, degre) {
 	var line = document.createElementNS(ns,'line');
 	line.setAttribute('x1', x1);
