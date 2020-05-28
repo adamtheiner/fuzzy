@@ -1,5 +1,5 @@
 'use strict';
-function ConmputeNoLinear() {   // učenie 
+function ConmputeNoLinear() {   // Učenie siete
 	var quotient = 0.07;
 	var greasy_init = Math.random();
 	var dirt_init = Math.random();
@@ -10,7 +10,7 @@ function ConmputeNoLinear() {   // učenie
 	var Wout = 0.0;
 	var minWashTime = 24; 
 
-	var greasy_out = parseFloat(greasy_range.value.substring(0, 4));
+	var greasy_out = parseFloat(greasy_range.value.substring(0, 4)); 
 	var dirt_out = parseFloat(dirt_range.value.substring(0, 4));
 	var weight_out = parseFloat(wash_WeightRange.value.substring(0, 4));
 
@@ -28,7 +28,7 @@ function ConmputeNoLinear() {   // učenie
 	ViewResult();
 
 
-	function ViewResult () {  // výpočet času prania
+	function ViewResult () {  // Výpočet času prania (Nelineárna metóda)
 		let result_string_variant = ["Veľmi krátky ", "Krátky ", "Stredný ", "Dlhý ", "Veľmi dlhý "];
 		let result_string = ((Wout * 1000) + minWashTime).toString().substring(0, 4);
 		let result_string_concat = "";
