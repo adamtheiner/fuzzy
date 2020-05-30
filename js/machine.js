@@ -166,7 +166,7 @@ function CountDown () {
 	timerId = setInterval(TimerTick, 1000);
 }
 
-function TimerTick () {//===============2hoursCompute!!!
+function TimerTick () {
 	washingTime -= 1;
 	if (washingTime >= 60) {
 	hours = 1;
@@ -182,7 +182,7 @@ function TimerTick () {//===============2hoursCompute!!!
 	}
 }
 
-function WashingEnd () { // =========* MACHINE STOP *==========
+function WashingEnd () { // Koniec prania
 	startButton.setAttribute('fill', 'green');
 	SetWearsStartPosition();
 	DrainWater();
@@ -193,7 +193,7 @@ function WashingEnd () { // =========* MACHINE STOP *==========
 	Head.appendChild(popup);
 }
 
-function ComputeWashingTime () {
+function ComputeWashingTime () { // Výpočet času prania 
 	washingTime = washingTime * totalGreasy;
 	washingTime = washingTime * totalDirt;
 	washingTime += 12;//============================temp!!! change 1 to 21(12?) ============
